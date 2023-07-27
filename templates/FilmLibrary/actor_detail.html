@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <title>{{ actor.name }}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'style_for_detail.css' %}">
+    {#    <link rel="stylesheet" href="style_for_detail.css">#}
+</head>
+<body>
+<div class="container">
+    <div class="wrapper">
+        <div class="portret">
+            <img src="{{ actor.url }}" alt="" style="max-width: 100%; max-height: 100%">
+        </div>
+        <!-- /.portret -->
+        <div class="right_chunk">
+            <div class="small_description">
+                <div class="mini_nav">
+                    <a href="#" class="nav_item">movies</a>/
+                    <a href="#" class="nav_item">persons</a>/
+                    <a href="#" class="nav_item">person_name</a>
+                </div>
+                {% load custom_tags %}
+                <h1 class="name_title">{{ actor.name }}</h1>
+                <h2 class="name_subtitle">{{ actor.slug|capfirst|replace_space }}</h2>
+                <div class="params">
+                    <div class="person_info">
+                        <div class="param_item">
+                            Возраст
+                        </div>
+                        <div class="param_value">
+                            {{ actor.age }}
+                        </div>
+                    </div>
+                    <div class="person_info">
+                        <div class="param_item">
+                            Дата рождения
+                        </div>
+                        <div class="param_value">
+                            {{ actor.date_of_birth }}
+                        </div>
+                    </div>
+                    <div class="person_info">
+                        <div class="param_item">
+                            Карьера
+                        </div>
+                        <div class="param_value">
+                            {{ actor.career }}
+                        </div>
+                    </div>
+                    <div class="person_info">
+                        <div class="param_item">
+                            Знак зодиака
+                        </div>
+                        <div class="param_value">
+                            {% random_zodiac_sign actor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="description">
+
+                {% autoescape off %}
+                    {% if actor.biography|length > 200 %}
+                        <div id="shortText" style="display: block">
+                            {{ actor.biography|truncatewords:100 }}
+                        </div>
+                        <div id="fullText" style="display: none;">
+                            {{ actor.biography|linebreaks|safe }}
+                        </div>
+                        <button id="toggleButton">Раскрыть текст</button>
+                    {% else %}
+                        <div id="fullText">
+                            {{ actor.biography|linebreaks|safe }}
+                        </div>
+                    {% endif %}
+                {% endautoescape %}
+            </div>
+            <!-- /.desription -->
+        </div>
+        <script>
+            const toggleButton = document.getElementById('toggleButton');
+            const shortText = document.getElementById('shortText');
+            const fullText = document.getElementById('fullText');
+
+            toggleButton.addEventListener('click', function () {
+                if (shortText.style.display === 'block') {
+                    shortText.style.display = 'none';
+                    fullText.style.display = 'block';
+                    toggleButton.textContent = 'Скрыть текст';
+                } else {
+                    shortText.style.display = 'block';
+                    fullText.style.display = 'none';
+                    toggleButton.textContent = 'Раскрыть текст';
+                }
+            });
+        </script>
+
+    </div>
+</body>
+</html>

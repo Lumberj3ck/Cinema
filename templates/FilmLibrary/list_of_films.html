@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+{% for film in films %}
+    <a href="{{ film.get_absolute_path }}"> Детальная информация </a>
+{% endfor %}
+<div class="container">
+
+</div>
+</body>
+</html>
