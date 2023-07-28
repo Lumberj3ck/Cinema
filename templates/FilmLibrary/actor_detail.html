@@ -3,18 +3,21 @@
 <head>
     {% load static %}
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ actor.name }}</title>
+    {#    <link rel="stylesheet" href="../../FilmLibrary/static/reset.css">#}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="{% static 'FilmLibrary/style_for_list.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'style_for_detail.css' %}">
-    {#    <link rel="stylesheet" href="style_for_detail.css">#}
+    <link rel="stylesheet" href="{% static 'spam/style_for_detail.css' %}">
+    {#    <link rel="stylesheet" href="../../FilmLibrary/static/syle_for_actor_detail_gpt.css">#}
 </head>
 <body>
 <div class="container">
     <div class="wrapper">
         <div class="portret">
-            <img src="{{ actor.url }}" alt="" style="max-width: 100%; max-height: 100%">
+            <img src="{{ actor.url }}" alt="">
         </div>
         <!-- /.portret -->
         <div class="right_chunk">
@@ -63,25 +66,29 @@
 
                 </div>
             </div>
-            <div class="description">
+            {% with actor.biography as biography %}
+                {% if biography %}
+                    <div class="description">
+                        {% autoescape off %}
+                            {% if biography|length > 500 %}
+                                <div id="shortText" style="display: block">
+                                    {{ biography|truncatewords:100 }}
+                                </div>
+                                <div id="fullText" style="display: none;">
+                                    {{ biography|linebreaks|safe }}
+                                </div>
+                                <button class="btn" id="toggleButton">Развернуть</button>
+                            {% else %}
+                                <div id="fullText">
+                                    {{ biography|linebreaks|safe }}
+                                </div>
+                            {% endif %}
+                        {% endautoescape %}
+                    </div>
 
-                {% autoescape off %}
-                    {% if actor.biography|length > 200 %}
-                        <div id="shortText" style="display: block">
-                            {{ actor.biography|truncatewords:100 }}
-                        </div>
-                        <div id="fullText" style="display: none;">
-                            {{ actor.biography|linebreaks|safe }}
-                        </div>
-                        <button id="toggleButton">Раскрыть текст</button>
-                    {% else %}
-                        <div id="fullText">
-                            {{ actor.biography|linebreaks|safe }}
-                        </div>
-                    {% endif %}
-                {% endautoescape %}
-            </div>
-            <!-- /.desription -->
+                    <!-- /.desription -->
+                {% endif %}
+            {% endwith %}
         </div>
         <script>
             const toggleButton = document.getElementById('toggleButton');
@@ -92,15 +99,16 @@
                 if (shortText.style.display === 'block') {
                     shortText.style.display = 'none';
                     fullText.style.display = 'block';
-                    toggleButton.textContent = 'Скрыть текст';
+                    toggleButton.textContent = 'Свернуть';
                 } else {
                     shortText.style.display = 'block';
                     fullText.style.display = 'none';
-                    toggleButton.textContent = 'Раскрыть текст';
+                    toggleButton.textContent = 'Развернуть';
                 }
             });
         </script>
-
     </div>
+</div>
+
 </body>
 </html>
