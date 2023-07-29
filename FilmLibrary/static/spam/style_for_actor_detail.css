@@ -111,9 +111,9 @@ button:focus  {
     display: grid;
     grid-template-columns: 130px 1fr;
     row-gap: 15px;
-    line-height: 12px;
+    line-height: 15px;
     gap:15px;
-    font-size: 13px;
+    font-size: 15px;
 }
 
 .param_item {

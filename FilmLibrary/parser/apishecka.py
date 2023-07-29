@@ -131,5 +131,7 @@ def main_parser(page=1):
 
 
 if __name__ == '__main__':
-    for i in range(6, 36):
-        main_parser(i)
+    # for i in range(6, 36):
+    #     main_parser(i)
+    s = get_url('/api/v2.1/films/search-by-keyword?keyword=Басқа Вариант Жоқ')
+    print(s)

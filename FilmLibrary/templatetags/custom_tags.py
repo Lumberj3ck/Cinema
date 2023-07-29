@@ -58,3 +58,12 @@ def minutes_to_hours_minutes(minutes):
         return f"{remaining_minutes} {minutes_str}"
     else:
         return "0 минут"
+
+@register.filter
+def evaluate_word(value):
+    if value % 10 == 1 and value % 100 != 11:
+        return f"{value} оценка"
+    elif 2 <= value % 10 <= 4 and not (12 <= value % 100 <= 14):
+        return f"{value} оценки"
+    else:
+        return f"{value} оценок"
