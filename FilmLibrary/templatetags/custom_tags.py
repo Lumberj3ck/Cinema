@@ -30,3 +30,31 @@ def random_zodiac_sign(actor):
     actor.zodiac_sign = zodiac_sign
     actor.save()
     return zodiac_sign
+@register.filter
+def minutes_to_hours_minutes(minutes):
+    if minutes == '1 час 30 минут':
+        return minutes
+    double_dot_format = minutes.split(':')
+    if len(double_dot_format) == 2:
+        try:
+            hours = int(double_dot_format[0])
+            remaining_minutes = int(double_dot_format[1])
+        except:
+            hours = 1
+            remaining_minutes = 30
+    else:
+        minutes = int(minutes)
+        hours = minutes // 60
+        remaining_minutes = minutes % 60
+
+    hours_str = "час" if hours == 1 or (hours % 10 == 1 and hours % 100 != 11) else "часа" if 2 <= hours <= 4 or (2 <= hours % 10 <= 4 and hours % 100 not in (12, 13, 14)) else "часов"
+    minutes_str = "минут" if remaining_minutes == 0 or 5 <= remaining_minutes <= 20 or (5 <= remaining_minutes % 10 <= 9 or remaining_minutes % 10 == 0) else "минуты" if 2 <= remaining_minutes % 10 <= 4 else "минут"
+
+    if hours > 0 and remaining_minutes > 0:
+        return f"{hours} {hours_str} {remaining_minutes} {minutes_str}"
+    elif hours > 0:
+        return f"{hours} {hours_str}"
+    elif remaining_minutes > 0:
+        return f"{remaining_minutes} {minutes_str}"
+    else:
+        return "0 минут"

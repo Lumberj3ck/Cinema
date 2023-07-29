@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'spam/style_for_list.css' %}">
-    {#    <link rel="stylesheet" href="../../FilmLibrary/static/style_for_list.css">/#}
+    <link rel="stylesheet" href="{% static 'spam/style_for_film_list.css' %}">
+    {#    <link rel="stylesheet" href="../../FilmLibrary/static/style_for_film_list.css">/#}
 </head>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
@@ -60,18 +60,19 @@
 {% load custom_tags %}
 <div class="container">
     <div class="wrapper">
-        {% for film in films %}
-            <div class="card w-75">
+        {% for film in page_obj %}
+            <div class="card w-100">
                 <div class="card-body">
                     <div class="card_counter">{{ forloop.counter }}</div>
-                    <img class="card_img" src="{{ film.image }}" alt="">
+                    <img class="card_img bg-placeholder-img" src="{{ film.image }}" alt="">
                     <div class="card_wraps">
                         <div class="upper_card_body">
                             <h5 class="card-title">{{ film.name }}</h5>
                             <div class="card-text">
-                                <div class="sub_field">{{ film.slug|replace_space }}, {{ film.year }}, {{ film.length }}</div>
-                                <div class="sub_field">Director {{ film.director }}</div>
-                                <div class="sub_field">Actors:  {% for actor in film.actors.all|slice:'3' %}{{ actor }} ,{% endfor %}</div>
+                                <div class="sub_field">{{ film.slug|replace_space }}, {{ film.year }}, {{ film.length|minutes_to_hours_minutes }}</div>
+                                <div class="sub_field">Режисёр {{ film.director }}</div>
+                                <div class="sub_field">В ролях:
+                                    {% for actor in film.actors.all|slice:'3' %}{{ actor }}  {% endfor %}</div>
                             </div>
                             <a href="{{ film.get_absolute_path }}" class="btn">Билеты</a>
                         </div>
@@ -81,9 +82,33 @@
                     </div>
                 </div>
             </div>
+
         {% endfor %}
     </div>
     <!-- /.wrapper -->
+    <nav class="pagination_wrapper">
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a href="?page=1" class="page-link">&laquo;</a></li>
+            {% endif %}
+
+            {% for page in page_obj.paginator.page_range|slice:slicer %}
+                {% if page == num_page %}
+                    <li class="page-item active">
+                        <a href="?page={{ page }}" class="page-link">
+                            {{ page }}
+                        </a></li>
+                {% else %}
+                    <li class="page-item"><a href="?page={{ page }}" class="page-link">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                {#            <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">{{ page_obj.next_page_number }}</a></li>#}
+                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">&raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 </body>
 </html>

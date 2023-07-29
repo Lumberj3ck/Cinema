@@ -5,7 +5,22 @@ from .models import Film, Actor, Director
 
 def list_of_films(request):
     films = Film.objects.all()
-    return render(request, 'FilmLibrary/list_of_films.html', {'films': films})
+    pages_ahead = 4
+    pages_before = 3
+    paginator = Paginator(films, 20)
+    current = 1
+    if request.GET.get('page'):
+        current = request.GET.get('page')
+    numpage = current if current else '1'
+    page_obj = paginator.get_page(current)
+    next = int(current) + pages_ahead if (int(current) + pages_ahead) < paginator.num_pages else paginator.num_pages
+    current = int(current) - pages_before if (int(current) - pages_before) > 0 else 0
+    return render(request, 'FilmLibrary/list_of_films.html',
+                  {'page_obj': page_obj,
+                   'slicer': str(current) + f':{next}',
+                   'num_page': int(numpage),
+                   'divide_by': 50,
+                   })
 
 
 def film_detail(request, movie_slug):

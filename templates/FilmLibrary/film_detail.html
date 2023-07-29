@@ -4,8 +4,8 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>{{ film.name }}</title>
-{#    <link rel="stylesheet" href="../../FilmLibrary/static/FilmLibrary/style.css">#}
-    <link rel="stylesheet" href="{% static 'spam/style.css' %}">
+{#    <link rel="stylesheet" href="../../FilmLibrary/static/FilmLibrary/style_for_film_detail.css">#}
+    <link rel="stylesheet" href="{% static 'spam/style_for_film_detail.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
@@ -27,16 +27,18 @@
             </ul>
             <h2 class="label"> О фильме </h2>
             <ul class="params">
+                {% load humanize %}
+                {% load custom_tags %}
                 <li><span class="option">Режисер</span> <a  class='clickable_link' href="{% url 'director_detail' director_slug=film.director.slug %}">{{ film.director }}</a></li>
                 <li><span class="option">Жанры</span> <span>{% for genre in film.genres.all %}{{ genre.name }}, {% endfor %}</span></li>
-                <li><span class="option">Бюджет</span> <span>${{ film.budget }}</span></li>
-                <li><span class="option">Продолжительность</span> <span class="option_time">{{ film.length }}</span></li>
+                <li><span class="option">Бюджет</span> <span>${{ film.budget|intword|intcomma }}</span></li>
+                <li><span class="option">Продолжительность</span> <span class="option_time">{{ film.length|minutes_to_hours_minutes }}</span></li>
                 <li><span class="option">В ролях</span> <span class="option_time">{% for actor in film.actors.all %}<a  class="clickable_link" href="{% url 'actor_detail' actor.slug %}">{{ actor.name }},</a> {% endfor %}</span></li>
             </ul>
         </div>
         <div class="rating">
             <span class="rating_main"> {{ film.rating }} </span>
-            <span class="rating_counts">31990 Голосов</span>
+            <span class="rating_counts">{{ film.rating_counts }}</span>
             <a href="#" class="clickable_link">1 Рецензия</a>
         </div>
     </div>
