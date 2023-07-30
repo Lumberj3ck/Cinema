@@ -1,19 +1,7 @@
 {% extends "FilmLibrary/list_of_films.html" %}
-{% block premiere %}
-    <div class="filter" style="margin-right: auto"><h1 style="margin: 10px auto;">
-        Фильмы в прокате в Алматы
-    </h1>
-        <ul class="nav nav-underline">
-            <li class="nav-item">
-                <a class="nav-link{% if not sort_by_name %} active{% endif %}" aria-current="page"
-                   href="?sort-by=rating">По
-                    популярности</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link{% if sort_by_name %} active{% endif %}" href="?sort-by=name">По названию</a>
-            </li>
-        </ul>
-    </div>
-
-
+{% block title %}
+    Фильмы в прокате сейчас в Алматы - прокат 2023 года
+{% endblock %}
+{% block page_name %}
+Фильмы в прокате в Алматы
 {% endblock %}

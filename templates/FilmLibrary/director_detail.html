@@ -1,0 +1,7 @@
+{% extends 'FilmLibrary/actor_detail.html' %}
+{% block filmography %}
+    {% for film in actor.produced_films.all %}
+        {{ film.name }}
+        {{ film.year }}
+    {% endfor %}
+{% endblock %}

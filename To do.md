@@ -12,6 +12,8 @@
 12) - [x] pagination for film list
 13) fix recension
 14) for future mabe add some review for films 
+15) add favicon for site
+16) 
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм

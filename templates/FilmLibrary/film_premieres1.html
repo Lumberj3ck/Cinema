@@ -1,0 +1,79 @@
+{% extends "FilmLibrary/list_of_films.html" %}
+{% block title %}
+    Фильмы в прокате сейчас в Алматы - прокат 2023 года
+{% endblock %}
+{% block premiere %}
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvas" aria-labelledby="offcanvasLabel">
+        <div class="offcanvas-header">
+            <h2 style="margin-bottom: 10px">Жанры</h2>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="1" id="option1">
+                <label for="option1">Драмма</label></div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="3" id="option2">
+                <label for="option2">Комедия</label>
+            </div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="4" id="option3">
+                <label for="option3">Криминал</label>
+            </div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="5" id="option4">
+                <label for="option4">Боевик</label>
+            </div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="8" id="option5">
+                <label for="option5">Мультфильм</label>
+            </div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="11" id="option6">
+                <label for="option6">Ужасы</label>
+            </div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="14" id="option7">
+                <label for="option7">Биография</label>
+            </div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="20" id="option8">
+                <label for="option8">Аниме</label>
+            </div>
+            <div class="radio_item"><input class='check_box_item' type="radio" name="option" value="21" id="option9">
+                <label for="option9">Фантастика</label>
+            </div>
+            <!-- Кнопка "Применить" -->
+            <button class="btn" id="applyButton">Применить</button>
+        </div>
+    </div>
+    <div class="filter" style="margin-right: auto"><h1 style="margin: 10px auto;">
+        Фильмы в прокате в Алматы
+    </h1>
+        <div class="filter__inner">
+            <ul class="nav nav-underline">
+                <li class="nav-item">
+                    <a class="nav-link{% if not sort_by_name %} active{% endif %} focus-ring focus-ring-dark"
+                       aria-current="page"
+                       href="?sort-by=rating">По
+                        популярности</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link{% if sort_by_name %} active{% endif %} focus-ring focus-ring-secondary"
+                       href="?sort-by=name">По названию</a>
+                </li>
+            </ul>
+            <button class="filter_settings" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvas"
+                    aria-controls="offcanvas">
+                <svg class="icon icon-equalizer" role="img">
+                    <use xlink:href="#icon-equalizer">
+                        <symbol id="icon-equalizer" viewBox="0 0 32 32">
+                            <path d="M14 4v-0.5c0-0.825-0.675-1.5-1.5-1.5h-5c-0.825 0-1.5 0.675-1.5 1.5v0.5h-6v4h6v0.5c0 0.825 0.675 1.5 1.5 1.5h5c0.825 0 1.5-0.675 1.5-1.5v-0.5h18v-4h-18zM8 8v-4h4v4h-4zM26 13.5c0-0.825-0.675-1.5-1.5-1.5h-5c-0.825 0-1.5 0.675-1.5 1.5v0.5h-18v4h18v0.5c0 0.825 0.675 1.5 1.5 1.5h5c0.825 0 1.5-0.675 1.5-1.5v-0.5h6v-4h-6v-0.5zM20 18v-4h4v4h-4zM14 23.5c0-0.825-0.675-1.5-1.5-1.5h-5c-0.825 0-1.5 0.675-1.5 1.5v0.5h-6v4h6v0.5c0 0.825 0.675 1.5 1.5 1.5h5c0.825 0 1.5-0.675 1.5-1.5v-0.5h18v-4h-18v-0.5zM8 28v-4h4v4h-4z"></path>
+                        </symbol>
+                    </use>
+                </svg>
+            </button>
+        </div>
+    </div>
+    <script>document.getElementById('applyButton').addEventListener('click', function () {
+        var selectedOption = document.querySelector('input[name="option"]:checked').value;
+        var urlParams = new URLSearchParams(window.location.search);
+        urlParams.set('genre', selectedOption);
+        var newUrl = window.location.pathname + '?' + urlParams.toString();
+        window.location.href = newUrl;
+    });
+    </script>
+
+{% endblock %}

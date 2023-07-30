@@ -39,11 +39,24 @@ def with_pagination(queryset, request, by_page=20):
 
 def list_of_films(request):
     films = Film.objects.all()
+    category = request.GET.get('sort-by')
+    genre = request.GET.get('genre')
+    if category not in ('rating', 'name'):
+        category = '-rating'
+    category = '-rating' if category == 'rating' else category
+    if genre and genre.isdigit():
+        films = Film.objects.filter(genres=genre)
+        # premiers = models.Collection.objects.get(name='Премьеры').films.filter(genres=genre)
+    else:
+        films = Film.objects.order_by(category)
+        # premiers = models.Collection.objects.get(name='Премьеры').films.order_by(category)
+    sort_by_name = category == 'name'
     slicer, current_page_number, page_obj = with_pagination(films, request)
     return render(request, 'FilmLibrary/list_of_films.html',
                       {'page_obj': page_obj,
                        'slicer': slicer,
                        'num_page': int(current_page_number),
+                       'sort_by_name': sort_by_name,
                        })
 
 
@@ -54,7 +67,7 @@ def film_detail(request, movie_slug):
 
 def director_detail(request, director_slug):
     director = get_object_or_404(Director, slug=director_slug)
-    return render(request, 'FilmLibrary/actor_detail.html', {'actor': director})
+    return render(request, 'FilmLibrary/director_detail.html', {'actor': director})
 
 
 def actor_detail(request, actor_slug):
