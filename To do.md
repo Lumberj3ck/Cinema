@@ -12,8 +12,7 @@
 12) - [x] pagination for film list
 13) fix recension
 14) for future mabe add some review for films 
-15) add favicon for site
-16) 
+15) add information about films in actor details actor.films_set.all
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм
