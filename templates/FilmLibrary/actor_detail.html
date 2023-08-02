@@ -8,9 +8,9 @@
     {#    <link rel="stylesheet" href="../../FilmLibrary/static/reset.css">#}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="{% static 'FilmLibrary/style_for_film_list.css' %}">
+    <link rel="stylesheet" href="{% static 'default.css' %}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'spam/style_for_actor_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'FilmLibrary/style_for_actor_detail.css' %}">
     {#    <link rel="stylesheet" href="../../FilmLibrary/static/syle_for_actor_detail_gpt.css">#}
 </head>
 <body>
@@ -39,6 +39,7 @@
                             {{ actor.age }}
                         </div>
                     </div>
+                    {% if actor.date_of_birth %}
                     <div class="person_info">
                         <div class="param_item">
                             Дата рождения
@@ -47,6 +48,7 @@
                             {{ actor.date_of_birth }}
                         </div>
                     </div>
+                    {% endif %}
                     <div class="person_info">
                         <div class="param_item">
                             Карьера
@@ -67,7 +69,7 @@
                 </div>
             </div>
             {% with actor.biography as biography %}
-                {% if biography %}
+                {% if biography and biography != ' ' %}
                     <div class="description">
                         {% autoescape off %}
                             {% if biography|length > 500 %}
@@ -89,12 +91,28 @@
                     <!-- /.desription -->
                 {% endif %}
             {% endwith %}
-            <div class="films">
+                {% if films %}
+            <div class="films description_like">
+                <h2 class='film_heading'>Похожие фильмы</h2>
                 {% block filmography %}
-                    {% for film in actor.films.all %}
-                        {{ film.name }}
-                    {% endfor %}
+                    <div class="films_cards">
+                        {% for film in films %}
+
+                            <div class="film_card">
+
+                                <a href="{{ film.get_absolute_path }}"><img class='film_poster' src="{{ film.image }}"
+                                                                            alt="{{ film.name }}"></a>
+                                <div class="small_card_info">
+                                    <a href="{{ film.get_absolute_path }}" class="clickable_link">{{ film.name }}</a>
+                                    <span style="margin-left: 5px;" class="{% if film.rating > 7.5 %}rating-positive{% elif film.rating > 5 %}rating-neutral{% else %}rating-negative{% endif %}">
+                                        {{ film.rating }}
+                                    </span>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
                 {% endblock %}
+                {% endif %}
             </div>
         </div>
         <script>

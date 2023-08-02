@@ -10,13 +10,14 @@
 10) cinemas in almaty their schedule
 11) pages with tickets
 12) - [x] pagination for film list
-13) fix recension
+13) - [x] fix recension
 14) for future mabe add some review for films 
-15) add information about films in actor details actor.films_set.all
-	Басқа Вариант Жоқ
-	Бесконечная свадьба
-	Коронный бросок. Фильм
+15) - [x] add information about films in actor details actor.films_set.all
+16) add favicon
+17) add film detail rating colors
+18) parse more films for making more collections and for site bigger filmography
+
 	Любой проблема шешемiз
-	 Миссия: невыполнима. Смертельная расплата. Часть 1
 	 Особняк с привидениями
 	 Человек-Паук: Паутина Вселенных
+19) Мир детского периода

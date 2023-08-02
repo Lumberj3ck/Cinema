@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'FilmLibrary.apps.FilmlibraryConfig',
     'django.contrib.humanize',
-    'film_collections.apps.FilmCollectionsConfig'
+    'film_collections.apps.FilmCollectionsConfig',
+    'city_cinemas.apps.CityCinemasConfig',
 ]
 
 

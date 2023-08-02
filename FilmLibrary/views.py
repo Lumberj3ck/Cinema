@@ -67,12 +67,14 @@ def film_detail(request, movie_slug):
 
 def director_detail(request, director_slug):
     director = get_object_or_404(Director, slug=director_slug)
-    return render(request, 'FilmLibrary/director_detail.html', {'actor': director})
+    films = director.produced_films.all()
+    return render(request, 'FilmLibrary/actor_detail.html', {'actor': director, 'films': films})
 
 
 def actor_detail(request, actor_slug):
     actor = get_object_or_404(Actor, slug=actor_slug)
-    return render(request, 'FilmLibrary/actor_detail.html', {'actor': actor})
+    films = actor.films.all()
+    return render(request, 'FilmLibrary/actor_detail.html', {'actor': actor, 'films': films})
 
 
 # def list_of_artist(request):

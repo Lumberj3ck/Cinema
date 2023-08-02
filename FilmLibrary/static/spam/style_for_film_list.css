@@ -80,6 +80,7 @@ body {
 
 .btn {
     width: max-content;
+    padding: 5px;
     /*min-width: 50%;*/
     height: 35px;
     display: flex;

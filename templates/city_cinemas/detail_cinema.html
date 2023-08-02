@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>Title</title>
+    <script src="https://api-maps.yandex.ru/v3/?apikey=f7a58eb1-dbc0-42d2-a364-a1d2b7327010&lang=ru_KZ"></script>
+    <script>
+        window.map = null;
+
+        main();
+
+        async function main() {
+            await ymaps3.ready;
+            const {
+                YMap,
+                YMapDefaultSchemeLayer,
+                YMapControls,
+                YMapDefaultFeaturesLayer,
+                YMapMarker
+            } = ymaps3;
+
+            const {YMapZoomControl} = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
+
+            map = new YMap(document.getElementById('map'), {
+                location: {
+                    center: ['{{ cinema.longitude }}', "{{ cinema.lattitude }}"],
+                    zoom: 16
+                }
+            });
+
+            map.addChild(scheme = new YMapDefaultSchemeLayer());
+            map.addChild(new YMapDefaultFeaturesLayer());
+
+            map.addChild(new YMapControls({position: 'right'}).addChild(new YMapZoomControl({})));
+
+            const el = document.createElement('img');
+            el.className = 'my-marker';
+            el.src = '{% static 'pin.svg' %}';
+            el.onclick = () => map.update({location: {...['{{ cinema.longitude }}', "{{ cinema.lattitude }}"], duration: 400}});
+            map.addChild(new YMapMarker({coordinates: ['{{ cinema.longitude }}', "{{ cinema.lattitude }}"], mapFollowsOnDrag: true}, el));
+        }
+    </script>
+
+    <style>html,
+    body,
+    #map {
+        width: 600px;
+        height: 400px;
+        margin: 0;
+        padding: 0;
+
+        font-family: 'Yandex Sans Text', Arial, Helvetica, sans-serif;
+    }
+
+    .my-marker {
+        position: relative;
+        box-sizing: border-box;
+        transform: translate(-50%, calc(-50% - 24px));
+        cursor: pointer;
+    }
+
+    </style>
+</head>
+<body>
+<div id="map"></div>
+{{ cinema.name }}
+{{ cinema.description }}
+{% for film in movie_list %}
+    <p>{{ film.name }}</p>
+    <ul>
+        {% for schedule in cinema.schedule_set.all %}
+            {% if schedule.film == film and schedule.cinema == cinema %}
+                <li>{{ schedule.time }}</li>
+            {% endif %}
+        {% endfor %}
+    </ul>
+{% endfor %}
+</body>
+</html>

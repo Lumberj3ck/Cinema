@@ -1,0 +1,43 @@
+.btn {
+    width: max-content;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    background: linear-gradient(135deg, #f50 69.93%, #d6bb00);
+    border-radius: 40px;
+    transition: transform 0.2s ease-out;
+    margin: 10px;
+    padding: 10px;
+}
+
+.btn:focus {
+    border: none;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #eb4e00 69.91%, #c5ac00);
+    transform: scale(1.05);
+}
+
+.clickable_link {
+    text-decoration: none;
+    color: #000000;
+}
+
+.clickable_link:hover {
+    color: #ff5c00;
+}
+
+.rating-positive {
+    color: #7aba13;
+}
+
+.rating-neutral {
+    color: #777;
+}
+
+.rating-negative {
+    color: red;
+}
