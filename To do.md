@@ -1,7 +1,7 @@
 1) - [x] Film List and film detail updated for mobile  
-2) optimization for mobile
+2) - [x] optimization for mobile
 3) film colection
-4) add link in person detail for movies/person/person_name
+4) - [x] add link in person detail for movies/person/person_name
 5) in url all_movies creaete filter by horrors by comedies add filters
 6) - [x] premiere collection
 7) urls for film colection
@@ -12,7 +12,7 @@
 12) - [x] pagination for film list
 13) fix recension
 14) for future mabe add some review for films 
-15) add information about films in actor details actor.films_set.all
+15) - [x] add information about films in actor details actor.films_set.all
 16) add favicon for site
 	Басқа Вариант Жоқ
 	Бесконечная свадьба

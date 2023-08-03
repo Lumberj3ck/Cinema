@@ -37,30 +37,19 @@
 
             const el = document.createElement('img');
             el.className = 'my-marker';
-            el.src = '{% static 'pin.svg' %}';
+            el.src = '{% static 'spam/pin.svg' %}';
             el.onclick = () => map.update({location: {...['{{ cinema.longitude }}', "{{ cinema.lattitude }}"], duration: 400}});
             map.addChild(new YMapMarker({coordinates: ['{{ cinema.longitude }}', "{{ cinema.lattitude }}"], mapFollowsOnDrag: true}, el));
         }
     </script>
 
-    <style>html,
-    body,
-    #map {
-        width: 200px;
-        height: 20px;
-        margin: 0;
-        padding: 0;
-
-        font-family: 'Yandex Sans Text', Arial, Helvetica, sans-serif;
-    }
-
+    <style>
     .my-marker {
         position: relative;
         box-sizing: border-box;
         transform: translate(-50%, calc(-50% - 24px));
         cursor: pointer;
     }
-
     </style>
 </head>
 <body>

@@ -23,9 +23,9 @@
         <div class="right_chunk">
             <div class="small_description">
                 <div class="mini_nav">
-                    <a href="#" class="nav_item">movies</a>/
-                    <a href="#" class="nav_item">persons</a>/
-                    <a href="#" class="nav_item">person_name</a>
+                    <a href="{% url 'premiere' %}" class="nav_item">Киноафиша</a>/
+                    <a href="{% url 'all_persons' %}" class="nav_item">Персоны</a>/
+                    <a class="nav_item">{{ actor.name }}</a>
                 </div>
                 {% load custom_tags %}
                 <h1 class="name_title">{{ actor.name }}</h1>

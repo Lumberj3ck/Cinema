@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class Cinema(models.Model):
     name = models.CharField(max_length=200)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     longitude = models.CharField(max_length=200, default='76.934287')
     lattitude = models.CharField(max_length=200, default='43.233651')
     movies = models.ManyToManyField(Film, through='Schedule')

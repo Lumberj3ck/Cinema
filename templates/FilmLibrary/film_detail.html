@@ -4,10 +4,8 @@
     {% load static %}
     <meta charset="UTF-8">
     <title>{{ film.name }}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-{#    <link rel="stylesheet" href="../../FilmLibrary/static/FilmLibrary/style_for_film_detail.css">#}
-    <link rel="stylesheet" href="{% static 'spam/white_theme_for_film_detail.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static 'FilmLibrary/white_theme_for_film_detail.css' %}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
@@ -17,11 +15,12 @@
 
     <div class="wrapper">
         <div class="img_wrapper"><img src="{{ film.image }}" alt="{{ film.name }} image"
-                style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"></div>
-{#        <img src="{% static film.image %}" img>#}
+                                      style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+        </div>
+        {#        <img src="{% static film.image %}" img>#}
         <div class="col-2">
             <div class="box_wrapper"><h1 class="title">{{ film.name }}</h1>
-                <h5 class="subtitle">{{ film.name }} {{ film.acceptable_age }}+</h5>
+                <h4 class="subtitle">{{ film.name }} {{ film.acceptable_age }}+</h4>
                 <p class="description">{{ film.description }}</p>
                 <a href="#" class="btn">Билеты</a>
             </div>
@@ -47,7 +46,8 @@
                             class="option_time">{{ film.length|minutes_to_hours_minutes }}</span></li>
                     <li><span class="option">В ролях</span> <span class="option_time">{% for actor in film.actors.all %}
                         <a class="clickable_link"
-                           href="{% url 'actor_detail' actor.slug %}">{{ actor.name }}{% if not forloop.last %},{% endif %}</a> {% endfor %}</span></li>
+                           href="{% url 'actor_detail' actor.slug %}">{{ actor.name }}{% if not forloop.last %}
+                            ,{% endif %}</a> {% endfor %}</span></li>
                 </ul>
             </div>
         </div>
@@ -57,6 +57,21 @@
                 <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
                     {{ film.rating_counts|evaluate_word }}{% endif %}</span>
                 {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
+            </div>
+        </div>
+        <div class="in_theater">
+            <div class="box_wrapper">
+                <h2 style="margin-bottom: 15px">Смотреть в кино</h2>
+                {% for cinema in cinemas %}
+                    <a href="{% url 'cinema_detail' cinema_id=cinema.id %}" class="film_name">{{ cinema.name }}</a>
+                    <div class="session_links">
+                        {% for schedule in film.schedule_set.all %}
+                            {% if schedule.cinema == cinema %}
+                                <a href="#" class="session_link">{{ schedule.time }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
             </div>
         </div>
     </div>
