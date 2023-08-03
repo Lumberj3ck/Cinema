@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cinema detail</title>
+    {% load static %}
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <script src="https://api-maps.yandex.ru/v3/?apikey=f7a58eb1-dbc0-42d2-a364-a1d2b7327010&lang=ru_KZ"></script>
+    <link rel="stylesheet" href="{% static 'cinema_detail.css' %}">
+    <script>
+        window.map = null;
+
+        main();
+
+        async function main() {
+            await ymaps3.ready;
+            const {
+                YMap,
+                YMapDefaultSchemeLayer,
+                YMapControls,
+                YMapDefaultFeaturesLayer,
+                YMapMarker
+            } = ymaps3;
+
+            const {YMapZoomControl} = await ymaps3.import('@yandex/ymaps3-controls@0.0.1');
+
+            map = new YMap(document.getElementById('map'), {
+                location: {
+                    center: ['{{ cinema.longitude }}', "{{ cinema.lattitude }}"],
+                    zoom: 16
+                }
+            });
+
+            map.addChild(scheme = new YMapDefaultSchemeLayer());
+            map.addChild(new YMapDefaultFeaturesLayer());
+
+            map.addChild(new YMapControls({position: 'right'}).addChild(new YMapZoomControl({})));
+
+            const el = document.createElement('img');
+            el.className = 'my-marker';
+            el.src = '{% static "pin.svg" %}';
+            el.onclick = () => map.update({
+                location: {
+                    ...['{{ cinema.longitude }}', "{{ cinema.lattitude }}"],
+                    duration: 400
+                }
+            });
+            map.addChild(new YMapMarker({
+                coordinates: ['{{ cinema.longitude }}', "{{ cinema.lattitude }}"],
+                mapFollowsOnDrag: true
+            }, el));
+        }
+    </script>
+    <style>
+
+
+        .my-marker {
+            position: relative;
+            box-sizing: border-box;
+            transform: translate(-50%, calc(-50% - 24px));
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+<div class="w-full h-full">
+    <div class="max-w-5xl mx-auto">
+        <div class="p-2 border rounded-2xl shadow-md ">
+            <div style="font-size:12px;" class="text-gray-400 m-1">Кино Афиша Алматы/Кинотеатры/{{ cinema.name }}</div>
+            <div class="font-bold text-2xl">{{ cinema.name }}</div>
+            <div class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                     stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                          d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007zM8.625 10.5a.375.375 0 11-.75 0 .375.375 0 01.75 0zm7.5 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="border rounded-2xl shadow-md shadow-gray-200 mt-3">
+            <div class="md:flex md:justify-between md:border-b md:border-gray-200 md:flex-wrap">
+                <div class="md:flex md:p-2">
+                    <span
+                            class="hidden md:inline md:w-1/5">Адресс </span>
+                    <div class="border-b border-gray-200 md:border-b-0 p-2 md:p-0">{{ cinema.adderss }}
+                    </div>
+                </div>
+                <div id='show_on_map' class="md:border-b-0 font-bold flex justify-between border-b border-gray-200 p-2">
+                    <a class="mr-1" href="#">Показать на карте</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                        <path fill-rule="evenodd"
+                              d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"
+                              clip-rule="evenodd"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="hidden rounded-2xl p-2 mt-3 w-5/6 mx-auto" id="map"
+                 style="height: 500px; box-sizing: border-box;"></div>
+            {% with cinema.description as description %}
+                {% if description %}
+                    <div class="p-2 md:flex">
+                        <span class="hidden md:inline md:w-1/5">О кинотеатре</span>
+                        {% autoescape off %}
+                            {% if cinema.detail|length > 500 %}
+                                <div class="md:w-4/5">
+                                <div id="shortText" style="display: block">
+                                    {{ description|truncatewords:100 }}
+                                </div>
+                                <div id="fullText" style="display: none;">
+                                    {{ description|linebreaks|safe }}
+                                </div>
+                                <button class="bg-gray-200 rounded-3xl p-2 font-bold text-md  transition-all duration-300 transform scale-95 hover:scale-100"
+                                        id="toggleButton">
+                    <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                               stroke="currentColor" class="w-4 h-4 inline">
+                      <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M15 15l-6 6m0 0l-6-6m6 6V9a6 6 0 0112 0v3"/>
+                    </svg>
+                    </span>
+                                    Развернуть
+                                </button>
+                            {% else %}
+                                <div id="fullText">
+                                    {{ cinema.detail|linebreaks|safe }}
+                                </div>
+                            {% endif %}
+                        {% endautoescape %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <a class="btn"
+               href="#">Билеты
+                от 1500</a>
+            <!--           btn class for button-->
+        </div>
+        <div class="p-2 border rounded-2xl shadow-md mt-3">
+            <div class="text-2xl font-bold">Расписание сеансов сегодня</div>
+            <div class="">
+                <div class="cards">
+                    {% for film in movie_list %}
+                        {% if forloop.counter > 3 %}
+                            <div class="flex hidden">
+                                <img src="{{ film.image }}" alt="" class="w-1/4">
+                                <div class="w-3/4"><a href="#">{{ film.name }}</a>
+                                    <ul class="flex">
+                                        {% for schedule in cinema.schedule_set.all %}
+                                            {% if schedule.film == film %}
+                                                <li class="mr-2">{{ schedule.time }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% else %}
+                            <div class="flex">
+                                <img src="{{ film.image }}" alt="" class="w-1/4">
+                                <div class="w-3/4"><a href="#">{{ film.name }}</a>
+                                    <ul class="flex">
+                                        {% for schedule in cinema.schedule_set.all %}
+                                            {% if schedule.film == film %}
+                                                <li class="mr-2">{{ schedule.time }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <button class="bg-gray-200 rounded-3xl p-2 font-bold text-md mt-2 text-md transition-all duration-300 transform scale-95 hover:scale-100"
+                        id="expand-button">
+                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                           stroke="currentColor" class="w-4 h-4 inline">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+</svg>
+</span>
+                    Показать все
+                </button>
+            </div>
+        </div>
+        </div>
+    </div>
+    <script>
+        const toggleButton = document.getElementById('toggleButton');
+        const shortText = document.getElementById('shortText');
+        const fullText = document.getElementById('fullText');
+
+        toggleButton.addEventListener('click', function () {
+            if (shortText.style.display === 'block') {
+                shortText.style.display = 'none';
+                fullText.style.display = 'block';
+                toggleButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline mr-1">\n' +
+                    '  <path stroke-linecap="round" stroke-linejoin="round" d="M9 9l6-6m0 0l6 6m-6-6v12a6 6 0 01-12 0v-3" />\n' +
+                    '</svg>Свернуть';
+            } else {
+                shortText.style.display = 'block';
+                fullText.style.display = 'none';
+                // toggleButton.textContent = 'Развернуть';
+                toggleButton.innerHTML = '<span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"\n' +
+                    'stroke="currentColor" class="w-4 h-4 inline">\n' +
+                    '<path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-6 6m0 0l-6-6m6 6V9a6 6 0 0112 0v3"/>\n' +
+                    '</svg>\n' +
+                    '</span>\n' +
+                    'Развернуть';
+            }
+        });
+    </script>
+    <script>
+        const expandButton = document.getElementById('expand-button');
+        const hiddenCards = document.querySelectorAll('.cards .hidden');
+        expandButton.addEventListener('click', () => {
+            hiddenCards.forEach(card => card.classList.toggle('hidden'));
+            expandButton.innerHTML = hiddenCards[0].classList.contains('hidden') ? '                <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"\n' +
+                '                           stroke="currentColor" class="w-4 h-4 inline">\n' +
+                '  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></span>Показать все' : '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 inline">\n' +
+                '  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />\n' +
+                '</svg>\nСкрыть все';
+        });
+    </script>
+    <script>
+        const show_map = document.getElementById('show_on_map')
+        const hidden_map = document.getElementById('map')
+        show_map.addEventListener('click', () => {
+            hidden_map.classList.toggle('hidden');
+            show_map.innerHTML = hidden_map.classList.contains('hidden') ? '                <a class="font-bold" href="#">Показать на карте</a>\n' +
+                '                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">\n' +
+                '                    <path fill-rule="evenodd"\n' +
+                '                          d="M11.54 22.351l.07.04.028.016a.76.76 0 00.723 0l.028-.015.071-.041a16.975 16.975 0 001.144-.742 19.58 19.58 0 002.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 00-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 002.682 2.282 16.975 16.975 0 001.145.742zM12 13.5a3 3 0 100-6 3 3 0 000 6z"\n' +
+                '                          clip-rule="evenodd"/>\n' +
+                '                </svg>' : '<a href="#" class="font-bold mr-1">Скрыть карту</a>\n' +
+                '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">\n' +
+                '  <path fill-rule="evenodd" d="M11.47 7.72a.75.75 0 011.06 0l7.5 7.5a.75.75 0 11-1.06 1.06L12 9.31l-6.97 6.97a.75.75 0 01-1.06-1.06l7.5-7.5z" clip-rule="evenodd" />\n' +
+                '</svg>'
+        })
+    </script>
+</body>
+</html>

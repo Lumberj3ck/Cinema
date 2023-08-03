@@ -40,14 +40,14 @@
                         </div>
                     </div>
                     {% if actor.date_of_birth %}
-                    <div class="person_info">
-                        <div class="param_item">
-                            Дата рождения
+                        <div class="person_info">
+                            <div class="param_item">
+                                Дата рождения
+                            </div>
+                            <div class="param_value">
+                                {{ actor.date_of_birth }}
+                            </div>
                         </div>
-                        <div class="param_value">
-                            {{ actor.date_of_birth }}
-                        </div>
-                    </div>
                     {% endif %}
                     <div class="person_info">
                         <div class="param_item">
@@ -91,8 +91,8 @@
                     <!-- /.desription -->
                 {% endif %}
             {% endwith %}
-                {% if films %}
-            <div class="films description_like">
+            {% if films %}
+                <div class="films description_like">
                 <h2 class='film_heading'>Похожие фильмы</h2>
                 {% block filmography %}
                     <div class="films_cards">
@@ -104,7 +104,8 @@
                                                                             alt="{{ film.name }}"></a>
                                 <div class="small_card_info">
                                     <a href="{{ film.get_absolute_path }}" class="clickable_link">{{ film.name }}</a>
-                                    <span style="margin-left: 5px;" class="{% if film.rating > 7.5 %}rating-positive{% elif film.rating > 5 %}rating-neutral{% else %}rating-negative{% endif %}">
+                                    <span style="margin-left: 5px;"
+                                          class="{% if film.rating > 7.5 %}rating-positive{% elif film.rating > 5 %}rating-neutral{% else %}rating-negative{% endif %}">
                                         {{ film.rating }}
                                     </span>
                                 </div>
@@ -112,7 +113,7 @@
                         {% endfor %}
                     </div>
                 {% endblock %}
-                {% endif %}
+            {% endif %}
             </div>
         </div>
         <script>

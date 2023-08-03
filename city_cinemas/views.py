@@ -9,4 +9,4 @@ def cinema_list(request):
 def cinema_detail(request, cinema_id):
     cinema = get_object_or_404(Cinema, id=cinema_id)
     movie_list_without_dubl = set(cinema.movies.all())
-    return render(request, 'city_cinemas/detail_cinema.html', {'cinema': cinema, 'movie_list': movie_list_without_dubl})
+    return render(request, 'city_cinemas/detail_cinema1.html', {'cinema': cinema, 'movie_list': movie_list_without_dubl})
