@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, get_object_or_404
-from .models import Film, Actor, Director
+from .models import Film, Actor, Director, Collection
 from city_cinemas.models import Cinema
 
 
@@ -44,8 +44,11 @@ def list_of_films(request):
 
 def film_detail(request, movie_slug):
     film = get_object_or_404(Film, slug=movie_slug)
-    cinemas = Cinema.objects.filter(movies=film)[:5]
-    return render(request, 'FilmLibrary/film_detail.html', {'film': film, 'cinemas': set(cinemas)})
+    premiere = Collection.objects.get(name='Премьеры').films.contains(film)
+    if premiere:
+        cinemas = Cinema.objects.filter(movies=film)[:5]
+        return render(request, 'FilmLibrary/premiere_film.html', {'film': film, 'cinemas': set(cinemas)})
+    return render(request, 'FilmLibrary/film_detail.html', {'film': film})
 
 
 def director_detail(request, director_slug):

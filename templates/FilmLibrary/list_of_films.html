@@ -150,7 +150,7 @@
                                 <div class="sub_field">В ролях:
                                     {% for actor in film.actors.all|slice:'3' %}{{ actor }}  {% endfor %}</div>
                             </div>
-                            <a href="{{ film.get_absolute_path }}" class="btn">Билеты</a>
+                            <a href="{{ film.get_absolute_path }}" class="btn">О фильме</a>
                         </div>
                         <div class="{% if film.rating > 7.5 %}rating-positive{% elif film.rating > 5 %}rating-neutral{% else %}rating-negative{% endif %}">
                             {{ film.rating }}

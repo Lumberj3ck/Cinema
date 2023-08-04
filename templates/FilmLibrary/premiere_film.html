@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load humanize %}
+    {% load custom_tags %}
+    <meta charset="UTF-8">
+    <title>{{ film.name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link rel="stylesheet" href="{% static 'spam/premiere_film_detail.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <div class="wrapper">
+        <div class="img_wrapper">
+            <img class='poster' src="{{ film.image }}" alt="{{ film.name }} image"
+                 style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
+            <div class="col-3">
+                <div class="rating">
+                    <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
+                    <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
+                        {{ film.rating_counts|evaluate_word }}{% endif %}</span>
+                    {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
+                </div>
+            </div>
+        </div>
+        {#        <img src="{% static film.image %}" img>#}
+        <div class="col-2">
+            <div class="box_wrapper"><h1 class="title">{{ film.name }}</h1>
+                <h4 class="subtitle">{{ film.name }} {{ film.acceptable_age }}+</h4>
+                <p class="description">{{ film.description }}</p>
+                <a href="#" class="btn">Билеты</a>
+            </div>
+            <div class="box_wrapper">
+                <ul class="params">
+                    <li><span class="option">Год выпуска</span> <span>{{ film.year }}</span></li>
+                    <li><span class="option">Страна</span> <span>{{ film.country }}</span></li>
+                    <li><span class="option">Качество видео</span> <span class="span_wrapper"><span
+                            class="tag">FullHd</span></span></li>
+                </ul>
+            </div>
+            <div class="box_wrapper"><h2 class="label"> О фильме </h2>
+                <ul class="params">
+                    <li><span class="option">Режисер</span> <a class='clickable_link'
+                                                               href="{% url 'director_detail' director_slug=film.director.slug %}">{{ film.director }}</a>
+                    </li>
+                    <li><span class="option">Жанры</span> <span>{% for genre in film.genres.all %}{{ genre.name }}
+                        {% if not forloop.last %},{% endif %} {% endfor %}</span></li>
+                    <li><span class="option">Бюджет</span> <span>${{ film.budget|intword|intcomma }}</span></li>
+                    <li><span class="option">Продолжительность</span> <span
+                            class="option_time">{{ film.length|minutes_to_hours_minutes }}</span></li>
+                    <li><span class="option">В ролях</span> <span class="option_time">{% for actor in film.actors.all %}
+                        <a class="clickable_link"
+                           href="{% url 'actor_detail' actor.slug %}">{{ actor.name }}{% if not forloop.last %}
+                            ,{% endif %}</a> {% endfor %}</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-3-hidden box_wrapper">
+            <div class="rating">
+                <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
+                <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
+                    {{ film.rating_counts|evaluate_word }}{% endif %}</span>
+                {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
+            </div>
+        </div>
+        {% if cinemas %}
+        <div class="in_theater">
+            <div class="box_wrapper">
+                <h2 style="margin-bottom: 15px">Смотреть в кино</h2>
+                {% for cinema in cinemas %}
+                    <a href="{% url 'cinema_detail' cinema_id=cinema.id %}" class="film_name">{{ cinema.name }}</a>
+                    <div class="session_links">
+                        {% for schedule in film.schedule_set.all %}
+                            {% if schedule.cinema == cinema %}
+                                <a href="#" class="session_link">{{ schedule.time }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    <!-- /.wrapper -->
+</div>
+<!-- /.container -->
+</body>
+</html>

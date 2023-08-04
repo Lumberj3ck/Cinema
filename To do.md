@@ -14,6 +14,8 @@
 14) for future mabe add some review for films 
 15) - [x] add information about films in actor details actor.films_set.all
 16) add favicon for site
+17) delete from premiere collection expired films
+18) button in film premiere detail would be redirecting to all sessions with that film
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм
