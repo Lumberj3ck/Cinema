@@ -1,0 +1,193 @@
+.cinema-hall {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+    justify-content: center;
+    transition: top 0.5s, left 0.5s;
+}
+
+.theater_wrapper {
+    justify-content: center;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    top: 100px;
+    left: 0;
+    transform: scale(1);
+    transition: transform 0.3s;
+}
+
+body {
+    background-color: rgba(190, 190, 190, 0.25);
+    font-family: 'Roboto', sans-serif;
+}
+
+.seat {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.selected {
+    background-color: #f00;
+    color: #fff;
+}
+
+.reserved {
+    background-color: #999;
+    color: #fff;
+    cursor: not-allowed;
+}
+
+.seat_row {
+    display: flex;
+    grid-gap: 0;
+}
+
+.element {
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    transition: transform 0.3s ease;
+}
+
+.buttons {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 40%;
+    z-index: 99;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.zoom {
+    border: none;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 35px;
+    height: 35px;
+    border-radius: 10px;
+    margin: 5px;
+}
+
+.picked_seat {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 20%);
+    color: white;
+}
+
+#adult {
+    height: 50%;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 0.1px solid rgba(135, 135, 135, 0.37);
+}
+
+#student {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    height: 50%;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.offcanvas-body {
+    padding: 0;
+}
+
+.ticket_items_wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 12rem;
+    grid-column-gap: 4px;
+    grid-row-gap: 4px;
+    overflow-x: scroll;
+}
+
+.offcanvas {
+    --bs-offcanvas-height: 23vh;
+    border-top: 0;
+}
+
+.offcanvas.offcanvas-bottom {
+    border-top: 0;
+    height: unset;
+}
+
+#offcanvasBottom {
+    height: 27vh;
+}
+
+#permanent_offcanvas_text {
+    padding: 15px;
+}
+
+.offcanvas-header {
+    padding-bottom: 0;
+}
+
+.ticket_item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    height: 60px;
+    border: 1px solid #ebebeb;
+    border-radius: 10px;
+    color: #898989;
+    font-weight: 400;
+    font-size: 16px;
+}
+
+.ticket_label {
+    margin-right: 39px;
+}
+
+.btn__next {
+    width: 100%;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    font-weight: 800;
+    text-align: center;
+    font-family: "Manrope", "Roboto", serif;
+    background-color: #fd6500;
+    box-shadow: 0 4px 25px rgba(253, 101, 0, .25);
+    border-radius: 12px;
+    border: none;
+    margin-top: 10px;
+    color: white;
+}
+
+.delete_btn {
+    width: 15px;
+    height: 15px;
+}
+
+.display {
+    margin: 0 auto;
+}
+
+.display_img {
+    width: 320px;
+}
+
+.container {
+    overflow: hidden;
+    height: 400px;
+}
+
+.row_num {
+    margin-right: 10px;
+}

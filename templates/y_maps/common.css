@@ -1,6 +1,0 @@
-.my-marker {
-    position: relative;
-    box-sizing: border-box;
-    transform: translate(-50%,calc(-50% - 24px));
-    cursor: pointer;
-}
