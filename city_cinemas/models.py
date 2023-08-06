@@ -17,11 +17,20 @@ class Cinema(models.Model):
     def __str__(self):
         return self.name
 
+
+class Seat(models.Model):
+    row_num = models.IntegerField()
+    seat_num = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.row_num} ряд {self.seat_num} место'
+
 class Schedule(models.Model):
     cinema = models.ForeignKey(Cinema, on_delete=models.CASCADE)
     film = models.ForeignKey(Film, on_delete=models.CASCADE)
     time = models.TimeField(blank=True, null=True)
-    price = models.IntegerField()
+    price = models.IntegerField(default=1500)
+    selected_seats = models.ManyToManyField('Seat', verbose_name='Занятые места', related_name='session')
 
     def __str__(self):
         return f"{self.film.name} at {self.cinema.name}"

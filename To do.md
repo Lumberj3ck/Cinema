@@ -7,15 +7,17 @@
 7) urls for film colection
 8) - [x] work with site theme white or black i have choosen white 
 9) site search
-10) cinemas in almaty their schedule
+10) - [x] cinemas in almaty their schedule
 11) pages with tickets
+12) - [x] pages for place in peek
 12) - [x] pagination for film list
 13) fix recension
 14) for future mabe add some review for films 
 15) - [x] add information about films in actor details actor.films_set.all
 16) add favicon for site
 17) delete from premiere collection expired films
-18) button in film premiere detail would be redirecting to all sessions with that film
+18) - [x] button in film premiere detail would be redirecting to all sessions with that film
+19) shibari in film detail
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм

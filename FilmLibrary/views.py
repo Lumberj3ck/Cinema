@@ -47,7 +47,7 @@ def film_detail(request, movie_slug):
     premiere = Collection.objects.get(name='Премьеры').films.contains(film)
     if premiere:
         cinemas = Cinema.objects.filter(movies=film)[:5]
-        return render(request, 'FilmLibrary/premiere_film.html', {'film': film, 'cinemas': set(cinemas)})
+        return render(request, 'FilmLibrary/premiere_film_detail.html', {'film': film, 'cinemas': set(cinemas)})
     return render(request, 'FilmLibrary/film_detail.html', {'film': film})
 
 

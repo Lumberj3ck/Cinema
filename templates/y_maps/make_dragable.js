@@ -3,7 +3,7 @@ $(function () {
     $(".theater_wrapper").css({top: 100, left: 0});
 
     $(".theater_wrapper").draggable({
-        containment: [-200, 100, 100, 180],
+        containment: [-300, 100, 300, 280],
         revert: function (dropped) {
             // Получаем элемент .cinema-hall
             var cinemaHall = $(".theater_wrapper");

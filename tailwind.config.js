@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["templates/city_cinemas/detail_cinema1.html"],
+  content: ["templates/city_cinemas/detail_cinema.html"],
   theme: {
     extend: {},
   },

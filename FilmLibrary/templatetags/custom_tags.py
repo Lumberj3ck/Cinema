@@ -1,9 +1,18 @@
+import datetime
 import random
 
 from django import template
 
 register = template.Library()
 
+@register.simple_tag
+def today_date():
+    date = datetime.datetime.now()
+    year = date.year
+    month = str(date.month).zfill(2)
+    day = str(date.day).zfill(2)
+    formated_date = f'{year}-{month}-{month}'
+    return formated_date
 @register.filter
 def replace_space(value):
     return value.replace('-', ' ').title()
