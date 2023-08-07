@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -35,7 +36,9 @@
 <div class="movie_info" style="display: flex; justify-content: center">
     <div><h1 style="margin-bottom: 5px; display: flex; justify-content: center">{{ movie_session.film.name }}</h1>
         <span style="color: #828292; margin-bottom: 5px">{{ movie_session.cinema }}
-            <span style="font-weight: 600; font-size: 16px; line-height: 23px">{% today_date %} • {{ movie_session.time }}</span></span></div></div>
+            <span style="font-weight: 600; font-size: 16px; line-height: 23px">{% today_date %} • {{ movie_session.time }}</span></span>
+    </div>
+</div>
 <div class="container">
     <div class="theater_wrapper" id="theater_wrapper">
         <div class="display">
@@ -104,15 +107,14 @@
             if (row in seat_numbers) {
                 n = seat_numbers[row]
             }
-            if (reserved_seats && reserved_seats.length - 1 >= selected_seat_num) {
-                selected_row = reserved_seats[selected_seat_num].row_num
-                selected_seat = reserved_seats[selected_seat_num].seat_num
-
-            }
             for (let seat = 1; seat <= n; seat++) {
                 className = 'seat'
                 img_src = 'https://ticket.kino.kz/static/media/empty_light.f550f048.svg'
-                if (selected_seat === seat && selected_row === row) {
+                if (selected_seat_num <= reserved_seats.length - 1) {
+                    selected_row = reserved_seats[selected_seat_num].row_num
+                    selected_seat = reserved_seats[selected_seat_num].seat_num
+                }
+                if (seat === selected_seat && row === selected_row) {
                     img_src = 'https://ticket.kino.kz/static/media/busy_light.ac4fa5e9.svg'
                     selected_seat_num += 1
                     className = 'seat reserved'

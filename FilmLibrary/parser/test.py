@@ -16,7 +16,7 @@ def get_url(url):
 dubl = []
 # for director in Director.objects.all():
 #     Director.objects.filter(pk__in=Director.objects.filter(name=director.name).values_list('id', flat=True)[1:]).delete()
-for director in Director.objects.all():
+for cinema in Cinema.objects.all():
     query = Director.objects.filter(slug=director.slug).values_list('id', flat=True)
     if query.count() > 1:
         dubl.append(query)

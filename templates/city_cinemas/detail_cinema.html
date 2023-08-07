@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -181,13 +181,14 @@
                             </div>
                         {% endfor %}
                     </div>
-                    <button class="bg-gray-200 rounded-3xl p-2 font-bold text-md mt-2 text-md transition-all duration-300 transform scale-95 hover:scale-100"
+                {% if movie_list|length > 3 %}                    <button class="bg-gray-200 rounded-3xl p-2 font-bold text-md mt-2 text-md transition-all duration-300 transform scale-95 hover:scale-100"
                             id="expand-button">
                 <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                            stroke="currentColor" class="w-4 h-4 inline">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
                 </svg></span>Показать все
                     </button>
+                    {% endif %}
                 </div>
             {% endif %}
         </div>

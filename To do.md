@@ -18,6 +18,13 @@
 17) delete from premiere collection expired films
 18) - [x] button in film premiere detail would be redirecting to all sessions with that film
 19) shibari in film detail
+20) add payment
+21) add some data for film sected places
+22) parse good data for film sessions and every day try to update data an also update film base espesialy for film premiere
+23) footer header in all pages
+24) production !!
+25) fix latitude longitude
+ 
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм

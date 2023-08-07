@@ -18,7 +18,7 @@ def cinema_detail(request, cinema_id):
 
 def session_detail(request, movie_slug, session_id):
     movie_session = Schedule.objects.get(id=session_id)
-    seats = movie_session.selected_seats.order_by('row_num')
+    seats = movie_session.selected_seats.order_by('row_num', 'seat_num')
     referer = request.META.get('HTTP_REFERER')
     reserved_seats = json.dumps(list(seats.values()))
     return render(request, 'city_cinemas/session_detail.html', {'movie_session': movie_session, 'reserved_seats': reserved_seats, 'referer': referer})
