@@ -1,13 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
+{% extends 'FilmLibrary/base.html' %}
+{% block head %}
+{% load static %}
     <meta charset="UTF-8">
     <title>Almaty Cinemas</title>
     <link rel="stylesheet" href="{% static 'cinema_list.css' %}">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-</head>
-<body>
+{% endblock %}
+{% block content %}
 <div class="max-w-4xl mx-auto" style="background-color: white">
     {% for cinema in cinemas %}
     <div class="p-2 border-b border-grey-300 md:w-3/4 mx-auto md:pb-4">
@@ -31,5 +30,4 @@
     {% endfor %}
 </div>
 
-</body>
-</html>
+{% endblock %}

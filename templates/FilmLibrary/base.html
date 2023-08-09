@@ -1,14 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    {% block css %}
+    {% load static %}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'FilmLibrary/default.css' %}">
+    {% block head %}
     {% endblock %}
 </head>
 <body>
+<nav class="navbar navbar-expand-lg mx-auto w-75" style="margin-bottom: 10px">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'premiere' %}">Афиша</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsupportedcontent"
+                aria-controls="navbarsupportedcontent" aria-expanded="false" aria-label="toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsupportedcontent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'all_persons' %}">Персоны</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cinema_list' %}">Кинотеатры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{% url 'all_movies' %}">Популярные фильмы</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 {% block content %}
 {% endblock %}
+
+<footer class="d-flex flex-wrap justify-content-between py-4 border-top bg-dark" style="margin-bottom: 0; margin-top: 20px">
+    <div class="col-sm-3 d-flex">
+        <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+            <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+        </a>
+        <span class="mb-3 mb-md-0  text-white">© 2023 KinosAfisha, Inc</span>
+    </div>
+    <div class="col-sm-3 mb-3 chunk " style="display:grid; justify-content:center;">
+        <ul class="nav flex-column ">
+            <li class="nav-item mb-2"><a href="{% url 'premiere' %}" class="nav-link p-0 clickable_link text-white">Афиша</a></li>
+            <li class="nav-item mb-2"><a href="{% url 'cinema_list' %}" class="nav-link p-0 clickable_link text-white">Кинотеатры</a></li>
+            <li class="nav-item mb-2"><a href="{% url 'all_persons' %}" class="nav-link p-0 clickable_link text-white">Персоны</a></li>
+            <li class="nav-item mb-2"><a href="{% url 'all_movies' %}" class="nav-link p-0 clickable_link text-white">Популярные фильмы</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-6 text-center  text-white justify-content-center middle_text">
+        КиноАфиша – это лучшее место для фанатов киноиндустрии. Круглосуточно в ваше распоряжение предоставлены:
+        онлайн-бронирование билетов в кинотеатры России;
+        более тысячи биографий актеров со всего мира, включая полные фильмографии.
+    </div>
+</footer>
 </body>
 </html>

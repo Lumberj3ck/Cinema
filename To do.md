@@ -20,10 +20,11 @@
 7) urls for film colection
 3) film colection
 22) parse good data for film sessions and every day try to update data an also update film base espesialy for film premiere
-23) footer header in all pages work on it tommorow
+23) - [x] footer header in all pages work on it tommorow
 5) in url all_movies creaete filter by horrors by comedies add filters
 24) production !!
 25) fix latitude longitude for cinemas somewhere default
+26) fix genre choose menu
  
 	Басқа Вариант Жоқ
 	Бесконечная свадьба

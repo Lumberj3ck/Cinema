@@ -1,19 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
+{% extends 'FilmLibrary/base.html' %}
+{% block head %}
+{% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ actor.name }}</title>
     {#    <link rel="stylesheet" href="../../FilmLibrary/static/reset.css">#}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="{% static 'default.css' %}">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'FilmLibrary/style_for_actor_detail.css' %}">
+{#    <link rel="stylesheet" href="{% static 'spam/../../FilmLibrary/static/default.css' %}">#}
+    <link rel="stylesheet" href="{% static 'dist/style_for_actor_detail.css' %}">
     {#    <link rel="stylesheet" href="../../FilmLibrary/static/syle_for_actor_detail_gpt.css">#}
-</head>
-<body>
+{% endblock %}
+{% block content %}
 <div class="container">
     <div class="wrapper">
         <div class="portret">
@@ -136,6 +132,4 @@
 
     </div>
 </div>
-
-</body>
-</html>
+{% endblock %}

@@ -404,7 +404,7 @@ Make sure disabled buttons don't get the pointer cursor.
    This can trigger a poorly considered lint error in some tools but is included by design.
 */
 
-
+img,
 svg,
 video,
 canvas,
@@ -422,6 +422,7 @@ object {
 Constrain images and videos to the parent width and preserve their intrinsic aspect ratio. (https://github.com/mozdevs/cssremedy/issues/14)
 */
 
+img,
 video {
   max-width: 100%;
   height: auto;
@@ -634,8 +635,8 @@ video {
   width: 100%;
 }
 
-.max-w-5xl {
-  max-width: 64rem;
+.max-w-7xl {
+  max-width: 80rem;
 }
 
 .scale-95 {
@@ -874,4 +875,13 @@ video {
 .btn:hover {
     background: linear-gradient(135deg, #eb4e00 69.91%, #c5ac00);
     transform: scale(1.05);
+}
+
+.clickable_link {
+    text-decoration: none;
+    color: #000000;
+}
+
+.clickable_link:hover {
+    color: #ff5c00;
 }

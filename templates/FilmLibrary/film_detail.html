@@ -1,21 +1,18 @@
-<html lang="en">
-<head>
-    {% load static %}
+{% extends "FilmLibrary/base.html" %}
+{% block head %}
+{% load static %}
     <meta charset="UTF-8">
     <title>{{ film.name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{% static 'FilmLibrary/film_detail.css' %}">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-</head>
-<body>
-<div class="container">
-    <div class="wrapper">
+    <link rel="stylesheet" href="{% static 'dist/film_detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="own_container">
+    <div class="_wwrapper">
         <div class="img_wrapper"><img src="{{ film.image }}" alt="{{ film.name }} image"
                 style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"></div>
 {#        <img src="{% static film.image %}" img>#}
-        <div class="col-2">
+        <div class="own_col-2">
             <div class="box_wrapper"><h1 class="title">{{ film.name }}</h1>
                 <h4 class="subtitle">{{ film.name }} {{ film.acceptable_age }}+</h4>
                 <p class="description">{{ film.description }}</p>
@@ -46,7 +43,7 @@
                 </ul>
             </div>
         </div>
-        <div class="col-3">
+        <div class="own_col-3">
             <div class="rating">
                 <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
                 <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
@@ -56,7 +53,7 @@
         </div>
     </div>
     <!-- /.wrapper -->
+    <div></div>
 </div>
 <!-- /.container -->
-</body>
-</html>
+{% endblock %}

@@ -41,3 +41,28 @@
 .rating-negative {
     color: red;
 }
+@media (min-width: 200px){
+    .flex-column{
+        flex-direction: row!important;
+        grid-gap: 5px;
+        justify-content: center;
+    }
+    .chunk{
+        width: 100%;
+    }
+}
+
+@media (min-width: 576px) {
+    .flex-column{
+        flex-direction: column!important;
+    }
+    .chunk{
+        width: unset;
+    }
+}
+@media (min-width: 992px){
+    .navbar-expand-lg .navbar-nav{
+        flex-direction: row-reverse;
+        width: 100%;
+    }
+}

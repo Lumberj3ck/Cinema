@@ -1,7 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
+{% extends 'FilmLibrary/base.html' %}
+{% block head %}
+{% load static %}
     {% load humanize %}
     {% load custom_tags %}
     <meta charset="UTF-8">
@@ -10,16 +9,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'js/premiere_film_detail.css' %}">
-</head>
-<body>
-<div class="container">
-
-    <div class="wrapper">
+    <link rel="stylesheet" href="{% static 'spam/premiere_film_detail.css' %}">
+{% endblock %}
+{% block content %}
+<div class="own_container">
+    <div class="own_wrapper">
         <div class="img_wrapper">
             <img class='poster' src="{{ film.image }}" alt="{{ film.name }} image"
                  style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;">
-            <div class="col-3">
+            <div class="own_col-3">
                 <div class="rating">
                     <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
                     <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
@@ -29,7 +27,7 @@
             </div>
         </div>
         {#        <img src="{% static film.image %}" img>#}
-        <div class="col-2">
+        <div class="own_col-2">
             <div class="box_wrapper"><h1 class="title">{{ film.name }}</h1>
                 <h4 class="subtitle">{{ film.name }} {{ film.acceptable_age }}+</h4>
                 <p class="description">{{ film.description }}</p>
@@ -89,5 +87,4 @@
     <!-- /.wrapper -->
 </div>
 <!-- /.container -->
-</body>
-</html>
+{% endblock %}

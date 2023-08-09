@@ -206,22 +206,11 @@ body {
     .sub_field:last-child {
         display: none;
     }
-    .flex-column{
-        flex-direction: row!important;
-        grid-gap: 5px;
-        justify-content: center;
-    }
-    .middle_text{
-        grid-row: 2/3;
-    }
 }
 
 @media (min-width: 576px) {
     .container, .container-md, .container-sm {
         max-width: 540px;
-    }
-    .flex-column{
-        flex-direction: column!important;
     }
 
     .sub_field:last-child {
@@ -232,11 +221,5 @@ body {
 @media (min-width: 768px) {
     .container, .container-md, .container-sm {
         max-width: 65%;
-    }
-}
-@media (min-width: 992px){
-    .navbar-expand-lg .navbar-nav{
-        flex-direction: row-reverse;
-        width: 100%;
     }
 }
