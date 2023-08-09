@@ -22,6 +22,7 @@ class Seat(models.Model):
     row_num = models.IntegerField()
     seat_num = models.IntegerField()
 
+
     def __str__(self):
         return f'{self.row_num} ряд {self.seat_num} место'
 

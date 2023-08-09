@@ -97,7 +97,7 @@
                     </div>
                     <div id='show_on_map'
                          class="md:border-b-0 font-bold flex justify-between border-b border-gray-200 p-2">
-                        <a class="mr-1" href="#">Показать на карте</a>
+                        <div class="mr-1">Показать на карте</div>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                              class="w-6 h-6">
                             <path fill-rule="evenodd"
@@ -156,7 +156,7 @@
                             <div class="{% if forloop.counter > 3 %}hidden{% endif %} p-1 border-b border-gray-200 rounded-xl">
                                 <div class="flex h-36 md:h-48 pr-0 ">
                                     <img src="{{ film.image }}" alt="" class="m-2">
-                                    <div class="w-full"><a class="font-bold" href="#">{{ film.name }}</a>
+                                    <div class="w-full"><a class="font-bold" href="{% url 'movie_detail' movie_slug=film.slug %}">{{ film.name }}</a>
                                         <p class="text-gray-600">{{ film.year }} {{ film.country }}</p>
                                         <p class="text-gray-500">{% for genre in film.genres.all|slice:'2' %}
                                             {{ genre.name }}
