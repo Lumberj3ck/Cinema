@@ -9,10 +9,10 @@
 15) - [x] add information about films in actor details actor.films_set.all
 18) - [x] button in film premiere detail would be redirecting to all sessions with that film
 21) - [x] add some data for film sected places
-14) for future mabe add some review for films
+14) for future maybe add some review for films
 16) add favicon for site
 17) delete from premiere collection expired films
-19) shibari in film detail
+19) - [x] shibari in film detail
 20) add payment
 13) fix recension
 11) pages with tickets

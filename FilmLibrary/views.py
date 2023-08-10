@@ -35,11 +35,11 @@ def list_of_films(request):
     sort_by_name = category == 'name'
     slicer, current_page_number, page_obj = with_pagination(films, request)
     return render(request, 'FilmLibrary/list_of_films.html',
-                      {'page_obj': page_obj,
-                       'slicer': slicer,
-                       'num_page': int(current_page_number),
-                       'sort_by_name': sort_by_name,
-                       })
+                  {'page_obj': page_obj,
+                   'slicer': slicer,
+                   'num_page': int(current_page_number),
+                   'sort_by_name': sort_by_name,
+                   })
 
 
 def film_detail(request, movie_slug):

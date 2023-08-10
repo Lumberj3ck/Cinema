@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>{{ film.name }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="{% static 'dist/film_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'js/film_detail.css' %}">
 {% endblock %}
 {% block content %}
 <div class="own_container">
@@ -13,8 +13,13 @@
                 style="box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;"></div>
 {#        <img src="{% static film.image %}" img>#}
         <div class="own_col-2">
-            <div class="box_wrapper"><h1 class="title">{{ film.name }}</h1>
-                <h4 class="subtitle">{{ film.name }} {{ film.acceptable_age }}+</h4>
+            <div class="box_wrapper">
+                <div class="mini_nav" style="display: flex; align-items: center; color: #bbb; font-size: 14px;">
+                    <a href="{% url 'premiere' %}" style="text-decoration: none; color: #bbb;">КиноАфиша</a> /
+                    <a >{{ film.name }}</a>
+                </div>
+                <h1 class="title">{{ film.name }}</h1>
+                <h4 class="subtitle" style="font-size: 17px">{{ film.name }} {{ film.acceptable_age }}+</h4>
                 <p class="description">{{ film.description }}</p>
             </div>
             <div class="box_wrapper">

@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'spam/premiere_film_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'js/premiere_film_detail.css' %}">
 {% endblock %}
 {% block content %}
 <div class="own_container">
@@ -28,8 +28,13 @@
         </div>
         {#        <img src="{% static film.image %}" img>#}
         <div class="own_col-2">
-            <div class="box_wrapper"><h1 class="title">{{ film.name }}</h1>
-                <h4 class="subtitle">{{ film.name }} {{ film.acceptable_age }}+</h4>
+            <div class="box_wrapper">
+                <div class="mini_nav" style="display: flex; align-items: center; color: #bbb; font-size: 14px;">
+                    <a href="{% url 'premiere' %}" style="text-decoration: none; color: #bbb;">КиноАфиша</a> /
+                    <a >{{ film.name }}</a>
+                </div>
+                <h1 class="title">{{ film.name }}</h1>
+                <h4 class="subtitle"style="font-size: 17px">{{ film.name }} {{ film.acceptable_age }}+</h4>
                 <p class="description">{{ film.description }}</p>
                 <a href="{% url 'cinema_list' %}" class="btn">Билеты</a>
             </div>
