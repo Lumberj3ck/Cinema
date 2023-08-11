@@ -5,7 +5,11 @@ __pycache__/
 
 # C extensions
 *.so
-
+tailwind.config.js
+src.css
+package-lock.json
+package.json
+node_modules/
 # Distribution / packaging
 .Python
 build/
