@@ -4,13 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ actor.name }}</title>
-    {#    <link rel="stylesheet" href="../../FilmLibrary/static/reset.css">#}
-{#    <link rel="stylesheet" href="{% static 'spam/../../FilmLibrary/static/default.css' %}">#}
     <link rel="stylesheet" href="{% static 'actor_detail/style_for_actor_detail.css' %}">
-    {#    <link rel="stylesheet" href="../../FilmLibrary/static/syle_for_actor_detail_gpt.css">#}
 {% endblock %}
 {% block content %}
-<div class="container">
+<div class="container min-h-screen">
     <div class="wrapper">
         <div class="portret">
             <img src="{{ actor.url }}" alt="">
