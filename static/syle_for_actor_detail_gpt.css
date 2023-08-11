@@ -1,0 +1,172 @@
+/*writed with chat gpt 2 opotinuty for actor detail*/
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    /*background-color: black;*/
+    /*background-color: rgba(208, 208, 208, 0.19);*/
+    background-color: rgba(106, 106, 106, 0.05);
+}
+
+.portret {
+    margin: 0 auto;
+}
+
+.portret img {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.small_description {
+    width: 100%;
+    max-width: 720px;
+    /*margin: 10px;*/
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.description {
+    width: 100%;
+    max-width: 720px;
+    /*margin: 10px;*/
+    border-radius: 12px;
+    background-color: white;
+    padding: 20px;
+    font-size: 15px;
+    line-height: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    min-width: 250px;
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin: auto;
+    /*align-items: flex-end;*/
+}
+
+.wrapper {
+    /*display: block;*/
+    display: grid;
+    /*overflow-x: hidden;*/
+    grid-template-columns: 1fr;
+    padding: 15px;
+    gap: 20px;
+}
+
+
+.right_chunk {
+    max-width: 100%;
+    /*margin: auto;*/
+    justify-content: center;
+}
+
+.mini_nav {
+    display: flex;
+    font-size: 11px;
+    color: #bbb;
+    margin-bottom: 3px;
+}
+
+.nav_item {
+    color: #bbb;
+    margin-right: 2px;
+    text-decoration: none;
+}
+
+.name_title {
+    margin-bottom: 5px;
+    font-size: 36px;
+    font-weight: 700;
+}
+
+.name_subtitle {
+    color: #929090;
+    font-size: 18px;
+    line-height: 25px;
+    opacity: .6;
+    font-weight: 400;
+    margin-bottom: 15px;
+}
+
+.params {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    row-gap: 15px;
+    line-height: 12px;
+    font-size: 13px;
+}
+
+.param_item {
+    color: rgba(121, 121, 121, 0.8);
+    text-transform: capitalize;
+}
+
+.param_value {
+    /* Add styles for param_value if needed */
+}
+
+@media (min-width: 650px) {
+    .right_chunk {
+        max-width: 95%;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 230px 1fr;
+    }
+
+    .small_description {
+        margin: 0px;
+    }
+
+    .description {
+        margin: 10px 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .right_chunk {
+        max-width: 100%;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 230px 1fr;
+    }
+
+    .small_description {
+        margin: 0px;
+    }
+
+    .description {
+        margin: 10px 0;
+    }
+}
+
+@media (min-width: 768px) {
+    .right_chunk {
+        max-width: 100%;
+    }
+
+    .wrapper {
+        display: grid;
+        grid-template-columns: 230px 1fr;
+    }
+
+    .small_description {
+        margin: 0px;
+    }
+
+    .description {
+        margin: 10px 0;
+    }
+}
