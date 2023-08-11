@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "tailwind.config.js",
   "scripts": {
-    "build": "tailwindcss build -i src.css -0 FilmLibrary/static/dist/output.css --watch"
+    "build": "tailwindcss build -i src.css -0 FilmLibrary/static/actor_detail/output.css --watch"
   },
   "author": "",
   "license": "ISC",
