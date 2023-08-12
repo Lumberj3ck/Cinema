@@ -29,6 +29,7 @@
 28) pin on ymap
 29) bootstrap navbar colors blue on tab etc
 30) work for mobile links in movie_detail for example
+31) add some space in actor films
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм
