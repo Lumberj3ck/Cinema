@@ -51,6 +51,7 @@
   display: flex;
   align-items: center;
   height: 45px;
+  position: relative;
 }
 
 .min-h-screen {
@@ -74,6 +75,8 @@
 .search_button{
   border: none;
   background: none;
+  position: absolute;
+  right: 20px;
 }
 .navbar input[type="text"]:focus,
 .navbar input[type="password"]:focus,
