@@ -35,4 +35,4 @@ def search(request):
         films = Film.objects.annotate(similarity=TrigramSimilarity('name', query)).filter(similarity__gt=0.3).order_by('-similarity')[:5]
         empty = not any((actors, directors, films))
         return render(request, 'city_cinemas/search_results.html', {'actors': actors, 'films': films, 'directors': directors, 'empty': empty})
-    return HttpResponse('get request')
+    return render(request, 'city_cinemas/search_results.html', {'empty': True}) 

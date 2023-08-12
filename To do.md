@@ -26,7 +26,8 @@
 25) fix latitude longitude for cinemas somewhere default
 26) fix genre choose menu
 27) DO not forget about ymaps api
-28) pin on ymap `
+28) pin on ymap
+29) bootstrap navbar colors blue on tab etc`
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм
