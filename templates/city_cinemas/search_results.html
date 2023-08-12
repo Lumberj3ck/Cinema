@@ -1,0 +1,39 @@
+{% extends 'FilmLibrary/base.html' %}
+
+{% block head %}
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+{% endblock %}
+
+{% block content %}
+<div class='min-h-screen'>
+{% if empty %}
+  
+  <p> Ничего не нашлось по вашему запросу</p>
+
+{% else %}
+    <p> По вашему запросу найдено </p> 
+   {% if films %}
+    <p> Фильмы </p>
+    {% for film in films %}
+    <a href='{% url "movie_detail" movie_slug=film.slug %}'> {{ film.name }} </a>
+    {% endfor %}
+  {% endif %}
+
+  {% if actors %}
+    <p>Актеры</p>
+      {% for actor in actors %}
+        <a href='{% url "actor_detail" actor_slug=actor.slug %}'> {{ actor.name }} </a>
+      {% endfor %}
+  {% endif %}
+
+  {% if directors %}
+    <p> Режисеры </p>
+    {% for director in directors %}
+        <a href='{% url "director_detail" director_slug=director.slug %}'> {{ director.name }} </a>
+    {% endfor %}
+  {% endif %}
+
+{% endif %}
+
+</div>
+{% endblock %}

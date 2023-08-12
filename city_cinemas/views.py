@@ -1,8 +1,11 @@
 import json
 
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
+from .forms import SearchForm
 from .models import *
+from django.contrib.postgres.search import TrigramSimilarity
+from FilmLibrary.models import *
 
 
 def cinema_list(request):
@@ -22,3 +25,14 @@ def session_detail(request, movie_slug, session_id):
     referer = request.META.get('HTTP_REFERER')
     reserved_seats = json.dumps(list(seats.values()))
     return render(request, 'city_cinemas/session_detail.html', {'movie_session': movie_session, 'reserved_seats': reserved_seats, 'referer': referer})
+
+def search(request):
+    form = SearchForm(request.POST)
+    if form.is_valid():
+        query = form.cleaned_data.get('query')
+        actors = Actor.objects.annotate(similarity=TrigramSimilarity('name', query)).filter(similarity__gt=0.3).order_by('-similarity')[:5]
+        directors = Director.objects.annotate(similarity=TrigramSimilarity('name', query)).filter(similarity__gt=0.3).order_by('-similarity')[:5]
+        films = Film.objects.annotate(similarity=TrigramSimilarity('name', query)).filter(similarity__gt=0.3).order_by('-similarity')[:5]
+        empty = not any((actors, directors, films))
+        return render(request, 'city_cinemas/search_results.html', {'actors': actors, 'films': films, 'directors': directors, 'empty': empty})
+    return HttpResponse('get request')

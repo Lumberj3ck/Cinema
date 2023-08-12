@@ -1,6 +1,7 @@
 from django.urls import path
 from FilmLibrary import views
 
+
 urlpatterns = [
     path('', views.list_of_films, name='all_movies'),
     path('person/', views.list_of_artist, name='all_persons'),

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     {% load static %}
     {% load custom_tags %}
-    <link rel="stylesheet" href="{% static 'style_for_place_choose.css' %}">
+    <link rel="stylesheet" href="{% static 'cinema_static/style_for_place_choose.css' %}">
 </head>
 <body>
 <div class="upper_block" style="display: flex; ">
@@ -132,6 +132,6 @@
 
     create_row_with_selected()
 </script>
-<script src="{% static 'ticket_pick_logic_for_cinema_place_chooser.js' %}"></script>
+<script src="{% static 'js/ticket_pick_logic_for_cinema_place_chooser.js' %}"></script>
 <script src="{% static 'js/make_dragable.js' %}"></script>
 </html>

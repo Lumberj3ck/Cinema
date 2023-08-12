@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <script src="https://api-maps.yandex.ru/v3/?apikey=f7a58eb1-dbc0-42d2-a364-a1d2b7327010&lang=ru_KZ"></script>
 {#    <link rel="stylesheet" href="{% static 'actor_detail/output.css' %}">#}
-    <link rel="stylesheet" href="{% static 'spam/cinema_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'cinema_static/cinema_detail.css' %}">
     <script>
         window.map = null;
 
@@ -37,7 +37,7 @@
 
             const el = document.createElement('img');
             el.className = 'my-marker';
-            el.src = '{% static 'spam/pin.svg' %}';
+            el.src = '{% static 'cinema_static/pin.svg' %}';
             el.onclick = () => map.update({
                 location: {
                     ...['{{ cinema.longitude }}', "{{ cinema.lattitude }}"],

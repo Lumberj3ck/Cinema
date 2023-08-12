@@ -1,0 +1,225 @@
+/*Stylesheet for film list at url /movies */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.wrapper {
+    margin: 0 auto;
+    max-width: 1050px;
+}
+
+.card_counter {
+    display: flex;
+    min-width: 24px;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+}
+
+.card_img {
+    width: 72px;
+    min-width: 72px;
+    height: 108px;
+}
+
+.card_wraps {
+    /*padding: 10px;*/
+    margin-left: 20px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 22px;
+}
+
+.card-text {
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.sub_field {
+    margin-bottom: 4px;
+    opacity: 0.6;
+    color: #5c5e5f;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.sub_field:first-child {
+    opacity: 0.95;
+    margin-bottom: 10px;
+}
+
+.card {
+    border-radius: 16px;
+    transition-timing-function: ease-out;
+    transition-duration: .15s;
+    transition-property: background-color;
+    border: none;
+    border-bottom: 0.09px solid rgba(176, 176, 176, 0.37);
+    display: block;
+}
+
+.card:hover {
+    background-color: rgba(220, 218, 218, 0.22);
+}
+
+.btn {
+    width: max-content;
+    padding: 5px;
+    /*min-width: 50%;*/
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white !important;
+    background: linear-gradient(135deg, #f50 69.93%, #d6bb00);
+    border-radius: 40px;
+    transition: transform .2s ease-out;
+    margin: 10px;
+
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #eb4e00 69.91%, #c5ac00);
+    /*width: 95px;*/
+    /*height: 40px;*/
+    transform: scale(1.05);
+}
+.filter_settings {
+  /* Сбросим границу, фон и отступы */
+  border: none;
+  background-color: transparent;
+  margin-left: 10px;
+  padding: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+.filter_settings:hover{
+    background-color: rgba(165, 165, 165, 0.12);
+}
+.pagination {
+    margin: 20px 0;
+    font-size: 13px;
+    justify-content: center;
+    --bs-pagination-color: black;
+    --bs-pagination-active-color: white;
+    --bs-pagination-active-bg: black;
+    --bs-pagination-active-border-color: #2a2929;
+    gap: 7px;
+    --bs-pagination-hover-color: none;
+    --bs-pagination-hover-bg: rgba(167, 166, 166, 0.15);
+    --bs-pagination-focus-color: none;
+    --bs-pagination-focus-bg: none;
+    --bs-pagination-focus-box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    --bs-pagination-border-width: none;
+    --bs-pagination-border-color: none;
+    --bs-pagination-bg: none;
+    font-weight: 500;
+    line-height: 18px;
+}
+
+.rating-positive {
+    color: #7aba13;
+}
+
+.rating-neutral {
+    color: #777;
+}
+
+.rating-negative {
+    color: red;
+}
+
+.nav {
+    --bs-nav-link-color: #fb6100;
+    --bs-nav-tabs-link-hover-border-color: black;
+    --bs-nav-link-hover-color: #fb6100;
+    --bs-nav-link-font-weight: 500;
+    --bs-nav-tabs-link-active-color: black;
+    --bs-nav-tabs-link-active-bg: black;
+    --bs-nav-tabs-link-active-border-color: black;
+}
+
+.nav-link {
+    --bs-focus-ring-color: none;
+}
+
+.radio_item {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+}
+
+.btn-close{
+    --bs-btn-close-focus-shadow:none;
+}
+[type='radio'] {
+    border-radius: 50%;
+}
+
+[type='radio'], [type='checkbox'] {
+    --color-bg: #fff;
+    width: 20px;
+    height: 20px;
+    border: 0.1px solid rgba(148, 148, 148, 0.23);
+    background-color: white;
+}
+.filter__inner{
+    display: flex;
+}
+
+@media (min-width: 200px) {
+    .container, .container-md, .container-sm {
+        max-width: 100%;
+    }
+
+    .sub_field:last-child {
+        display: none;
+    }
+}
+
+@media (min-width: 576px) {
+    .container, .container-md, .container-sm {
+        max-width: 540px;
+    }
+
+    .sub_field:last-child {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .container, .container-md, .container-sm {
+        max-width: 65%;
+    }
+}

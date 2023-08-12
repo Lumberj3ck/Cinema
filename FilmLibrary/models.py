@@ -6,7 +6,7 @@ class Film(models.Model):
     name = models.CharField(max_length=250)
     rating = models.DecimalField(max_digits=5, decimal_places=1, default=6)
     country = models.CharField(max_length=200, verbose_name='Страна выхода', default='Франция')
-    slug = models.SlugField()
+    slug = models.SlugField(max_length=250)
     year = models.IntegerField(default=2023)
     rating_counts = models.IntegerField(null=True, default=1233)
     image = models.URLField(blank=True, default=' ')
@@ -37,7 +37,7 @@ class Actor(models.Model):
 
     def get_absolute_path(self):
         return reverse('actor_detail', args={self.slug})
-
+    
     def __str__(self):
         return self.name
 

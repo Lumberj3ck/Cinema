@@ -25,7 +25,8 @@
 24) production !!
 25) fix latitude longitude for cinemas somewhere default
 26) fix genre choose menu
- 
+27) DO not forget about ymaps api
+28) pin on ymap `
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм
