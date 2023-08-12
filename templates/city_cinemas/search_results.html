@@ -1,35 +1,90 @@
 {% extends 'FilmLibrary/base.html' %}
 
 {% block head %}
+{% load static %}
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="{%  static 'cinema_static/cinema_list.css' %}"> 
 {% endblock %}
 
 {% block content %}
-<div class='min-h-screen'>
+<div class='min-h-screen max-w-8xl md:w-3/4 mx-auto' style='margin-bottom: 50px;'>
 {% if empty %}
   
-  <p> Ничего не нашлось по вашему запросу</p>
+<div style="padding-left: 10px;font-size: 19px;"> Ничего не нашлось по вашему запросу {{ query }}</div>
 
 {% else %}
-    <p> По вашему запросу найдено </p> 
+<div style="padding-left: 10px;font-size: 19px;" class='mx-auto'> Результаты по запросу {{ query }}</div> 
    {% if films %}
-    <p> Фильмы </p>
+    <p class="font-bold" style='margin: 20px 0; padding-left: 10px;'> Фильмы </p>
     {% for film in films %}
-    <a href='{% url "movie_detail" movie_slug=film.slug %}'> {{ film.name }} </a>
+    <div class="p-2 border-b border-grey-300  md:pb-4">
+      <a href="{{ film.get_absolute_path }}">
+        <div class="flex justify-between">
+          <div>
+            <div class="text-lg" style="font-size: 19px">{{ film.name }}</div>
+            <div class="text-gray-400 text-xs my-1" style="font-size: 15px">
+              <div class="h-2 w-2 bg-red-600 rounded-full inline-block mr-1" ></div>
+              {% for genre in film.genres.all|slice:":3" %}
+              {{ genre }}
+              {% endfor %}
+            </div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                                  stroke="currentColor"
+                                                                                  class="w-5 h-5 text-gray-300 mt-3 md:hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+          </svg>
+        </div>
+      </a>
+    </div>
     {% endfor %}
   {% endif %}
 
   {% if actors %}
-    <p>Актеры</p>
+    <p class="font-bold" style='margin: 20px 0; padding-left: 10px;'>Актеры</p>
       {% for actor in actors %}
-        <a href='{% url "actor_detail" actor_slug=actor.slug %}'> {{ actor.name }} </a>
+      <div class="p-2 border-b border-grey-300 md:w-3/4 mx-auto md:pb-4">
+        <a href="{% url 'actor_detail' actor_slug=actor.slug %}">
+          <div class="flex justify-between">
+            <div>
+              <div class="text-lg" style="font-size: 19px">{{ actor.name }}</div>
+              <div class="text-gray-400 text-xs my-1" style="font-size: 15px">
+                <div class="h-2 w-2 bg-red-600 rounded-full inline-block mr-1" ></div>
+                {{ actor.career }}
+              </div>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                                    stroke="currentColor"
+                                                                                    class="w-5 h-5 text-gray-300 mt-3 md:hidden">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+            </svg>
+          </div>
+        </a>
+      </div>
       {% endfor %}
   {% endif %}
 
   {% if directors %}
-    <p> Режисеры </p>
+    <p class="font-bold" style='margin: 20px 0; padding-left: 10px;'> Режисеры </p>
     {% for director in directors %}
-        <a href='{% url "director_detail" director_slug=director.slug %}'> {{ director.name }} </a>
+    <div class="p-2 border-b border-grey-300 md:w-3/4 mx-auto md:pb-4">
+      <a href="{% url 'director_detail' director_slug=director.slug %}">
+        <div class="flex justify-between">
+          <div>
+            <div class="text-lg" style="font-size: 19px">{{ director.name }}</div>
+            <div class="text-gray-400 text-xs my-1" style="font-size: 15px">
+              <div class="h-2 w-2 bg-red-600 rounded-full inline-block mr-1" ></div>
+              {{ director.career }}
+            </div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                                                                  stroke="currentColor"
+                                                                                  class="w-5 h-5 text-gray-300 mt-3 md:hidden">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/>
+          </svg>
+        </div>
+      </a>
+    </div>
     {% endfor %}
   {% endif %}
 

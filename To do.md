@@ -16,7 +16,7 @@
 20) add payment
 13) fix recension
 11) pages with tickets
-9) site search
+9) - [x] site search
 7) urls for film colection
 3) film colection
 22) parse good data for film sessions and every day try to update data an also update film base espesialy for film premiere
@@ -27,7 +27,8 @@
 26) fix genre choose menu
 27) DO not forget about ymaps api
 28) pin on ymap
-29) bootstrap navbar colors blue on tab etc`
+29) bootstrap navbar colors blue on tab etc
+30) work for mobile links in movie_detail for example
 	Басқа Вариант Жоқ
 	Бесконечная свадьба
 	Коронный бросок. Фильм
