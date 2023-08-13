@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-rm=wtgj#c!bl_6q4y=suue63k(_#j0yephi^8@w0i1c(*0irjb
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['143.198.224.109', 'localhost']
+ALLOWED_HOSTS = ['afishakino.info.gf', 'localhost']
 
 
 # Application definition
