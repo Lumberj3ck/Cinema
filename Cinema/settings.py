@@ -22,9 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rm=wtgj#c!bl_6q4y=suue63k(_#j0yephi^8@w0i1c(*0irjb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['143.198.224.109', 'localhost']
+
 
 # Application definition
 
@@ -39,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'film_collections.apps.FilmCollectionsConfig',
     'city_cinemas.apps.CityCinemasConfig',
-    'django.contrib.postgres'
 ]
 
 
@@ -79,21 +79,15 @@ WSGI_APPLICATION = 'Cinema.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cinema_project',
+        'USER': 'lumberjack',
+        'PASSWORD': 'h*99IgJdEc8*',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cinema_project1',
-        'USER': 'lumberjack1',
-        'PASSWORD': '1234',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
@@ -128,12 +122,14 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 MEDIA_ROOT = 'static/'
 MEDIA_URL = 'FilmLibrary/'
-# STATICFILES_DIRS = [
-#     # os.path.join(BASE_DIR, "static/images"),
-#     os.path.join(BASE_DIR, "static/"),
-# ]
+#STATICFILES_DIRS = [
+    # os.path.join(BASE_DIR, "static/images"),
+    #os.path.join(BASE_DIR, "static/"),
+    #]
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
