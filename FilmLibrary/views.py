@@ -54,14 +54,17 @@ def list_of_films(request):
 def film_detail(request, movie_slug):
     film = get_object_or_404(Film, slug=movie_slug)
     premiere = Collection.objects.get(name="Премьеры").films.contains(film)
+    reviews = film.reviews.all().order_by("-like_count")[:3]
     if premiere:
         cinemas = Cinema.objects.filter(movies=film)[:5]
         return render(
             request,
             "FilmLibrary/premiere_film_detail.html",
-            {"film": film, "cinemas": set(cinemas)},
+            {"film": film, "cinemas": set(cinemas), "reviews": reviews},
         )
-    return render(request, "FilmLibrary/film_detail.html", {"film": film})
+    return render(
+        request, "FilmLibrary/film_detail.html", {"film": film, "reviews": reviews}
+    )
 
 
 def director_detail(request, director_slug):
@@ -97,10 +100,12 @@ def list_of_artist(request):
     )
 
 
-def film_review(request, movie_slug):
+def film_review(request, movie_slug, review_id):
     film = get_object_or_404(Film, slug=movie_slug)
-    review = film.reviews.all()[0]
-    comment = review.comment_set.all()[0]
+    review = film.reviews.get(pk=review_id)
+    comments = review.comment_set.all()
     return render(
-        request, "FilmLibrary/film_review.html", {"review": review, "comment": comment}
+        request,
+        "FilmLibrary/film_review.html",
+        {"review": review, "comments": comments},
     )

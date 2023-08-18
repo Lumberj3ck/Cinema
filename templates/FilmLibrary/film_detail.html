@@ -55,6 +55,11 @@
                     {{ film.rating_counts|evaluate_word }}{% endif %}</span>
                 {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
             </div>
+            <div class='review'>
+              {% for review in reviews %}
+                  <a href='{% url "film_review" movie_slug=film.slug review_id=review.id %}'>{{review.text}}</a>
+              {% endfor %}
+            </div>
         </div>
     </div>
     <!-- /.wrapper -->

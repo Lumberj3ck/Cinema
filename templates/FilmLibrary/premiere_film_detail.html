@@ -73,6 +73,19 @@
         </div>
         {% if cinemas %}
         <div class="in_theater">
+          <div class="box_wrapper">
+            <div class='review'>
+              <h2 class='review_title'>Ревью</h2>
+              <div class='reviews'>
+              {% for review in reviews %}
+              <div class='review_wrapper'>
+              <span class='review_num'>{{forloop.counter}}.</span>
+              <a href='{% url "film_review" movie_slug=film.slug review_id=review.id %}' class='clickable_link'>{{review.name|capfirst}}</a>
+              </div>
+              {% endfor %}
+              </div>
+            </div>
+          </div>
             <div class="box_wrapper">
                 <h2 style="margin-bottom: 15px">Смотреть в кино</h2>
                 {% for cinema in cinemas %}
@@ -84,7 +97,7 @@
                             {% endif %}
                         {% endfor %}
                     </div>
-                {% endfor %}
+                    {% endfor %}
             </div>
         </div>
         {% endif %}

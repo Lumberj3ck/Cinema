@@ -5,9 +5,13 @@
 {% endblock %}
 
 {% block content %}
-
-<div class='coments'><div class='comment'>{{comment.text}}</div></div>
-
+<div class='review_text'>{{review.text}}</div>`
+<div class='comments'>
+  {% for comment in comments %}
+  <div class='comment'>{{comment.text}}</div>
+  {% endfor %}
+</div>
+<div class='likes_counter'>{{review.like_count}}</div>
 {% endblock %}
 
 
