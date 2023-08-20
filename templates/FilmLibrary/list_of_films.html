@@ -96,7 +96,7 @@
                                 <div class="sub_field">В ролях:
                                     {% for actor in film.actors.all|slice:'3' %}{{ actor }}  {% endfor %}</div>
                             </div>
-                            <a href="{{ film.get_absolute_path }}" class="btn">О фильме</a>
+                            <a href="{% url 'movie_detail' movie_slug=film.slug %}" class="btn">О фильме</a>
                         </div>
                         <div class="{% if film.rating > 7.5 %}rating-positive{% elif film.rating > 5 %}rating-neutral{% else %}rating-negative{% endif %}">
                             {{ film.rating }}
@@ -111,22 +111,22 @@
     <nav class="pagination_wrapper">
         <ul class="pagination">
             {% if page_obj.has_previous %}
-                <li class="page-item"><a href="?page=1" class="page-link">&laquo;</a></li>
+            <li class="page-item"><a href="?page=1{{sort_by_name_url}}" class="page-link">&laquo;</a></li>
             {% endif %}
 
             {% for page in page_obj.paginator.page_range|slice:slicer %}
                 {% if page == num_page %}
                     <li class="page-item active">
-                        <a href="?page={{ page }}" class="page-link">
+                        <a href="?page={{ page }}{{sort_by_name_url}}" class="page-link">
                             {{ page }}
                         </a></li>
                 {% else %}
-                    <li class="page-item"><a href="?page={{ page }}" class="page-link">{{ page }}</a></li>
+                    <li class="page-item"><a href="?page={{ page }}{{sort_by_name_url}}" class="page-link">{{ page }}</a></li>
                 {% endif %}
             {% endfor %}
             {% if page_obj.has_next %}
                 {#            <li class="page-item"><a href="?page={{ page_obj.next_page_number }}" class="page-link">{{ page_obj.next_page_number }}</a></li>#}
-                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}" class="page-link">&raquo;</a>
+                <li class="page-item"><a href="?page={{ page_obj.paginator.num_pages }}{{sort_by_name_url}}" class="page-link">&raquo;</a>
                 </li>
             {% endif %}
         </ul>

@@ -2,16 +2,23 @@
 
 {% block head %}
 <title>{{review.name}}</title>
+{% load static %}
+<link rel='stylesheet' href='{% static "film_static/film_review.css" %}'>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 {% endblock %}
 
 {% block content %}
-<div class='review_text'>{{review.text}}</div>`
+<div class='content min-h-screen'>
+  <h2 >{{review.name}}</h2>
+  {% load markdownify %}
+<div class='review_text'>{{review.text|markdownify}}</div>`
 <div class='comments'>
   {% for comment in comments %}
   <div class='comment'>{{comment.text}}</div>
   {% endfor %}
 </div>
 <div class='likes_counter'>{{review.like_count}}</div>
+</div>
 {% endblock %}
 
 

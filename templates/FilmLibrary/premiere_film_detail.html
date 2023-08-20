@@ -73,6 +73,7 @@
         </div>
         {% if cinemas %}
         <div class="in_theater">
+          {% if reviews %}
           <div class="box_wrapper">
             <div class='review'>
               <h2 class='review_title'>Ревью</h2>
@@ -81,18 +82,22 @@
               <div class='review_wrapper'>
               <span class='review_num'>{{forloop.counter}}.</span>
               <a href='{% url "film_review" movie_slug=film.slug review_id=review.id %}' class='clickable_link'>{{review.name|capfirst}}</a>
+              <p class='review_text' style='margin-top: 10px;'>
+              {{review.text|truncatewords:30}}
+              </p>
               </div>
               {% endfor %}
               </div>
             </div>
           </div>
+          {% endif %}
             <div class="box_wrapper">
                 <h2 style="margin-bottom: 15px">Смотреть в кино</h2>
                 {% for cinema in cinemas %}
                     <a href="{% url 'cinema_detail' cinema_id=cinema.id %}" class="film_name">{{ cinema.name }}</a>
                     <div class="session_links">
                         {% for schedule in film.schedule_set.all %}
-                            {% if schedule.cinema == cinema %}
+                            {% if schedule.cinema.id == cinema.id %}
                                 <a href="{% url 'session' movie_slug=film.slug session_id=schedule.id %}" class="session_link">{{ schedule.time }}</a>
                             {% endif %}
                         {% endfor %}

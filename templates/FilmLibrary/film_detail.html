@@ -47,19 +47,32 @@
                            href="{% url 'actor_detail' actor.slug %}">{{ actor.name }}{% if not forloop.last %},{% endif %}</a> {% endfor %}</span></li>
                 </ul>
             </div>
+            {% if reviews %}
+            <div class="box_wrapper">
+              <div class='review'>
+                <h2 class='review_title'>Ревью</h2>
+                <div class='reviews'>
+                  {% for review in reviews %}
+                  <div class='review_wrapper'>
+                    <span class='review_num'>{{forloop.counter}}.</span>
+                    <a href='{% url "film_review" movie_slug=film.slug review_id=review.id %}' class='clickable_link'>{{review.name|capfirst}}</a>
+                    <p class='review_text' style='margin-top: 10px;'>
+                    {{review.text|truncatewords:30}}
+                    </p>
+                  </div>
+                 {% endfor %}
+                </div>
+              </div>
+            </div>
+            {% endif %}
         </div>
         <div class="own_col-3">
-            <div class="rating">
-                <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
-                <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
-                    {{ film.rating_counts|evaluate_word }}{% endif %}</span>
-                {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
-            </div>
-            <div class='review'>
-              {% for review in reviews %}
-                  <a href='{% url "film_review" movie_slug=film.slug review_id=review.id %}'>{{review.text}}</a>
-              {% endfor %}
-            </div>
+          <div class="rating">
+            <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
+            <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
+              {{ film.rating_counts|evaluate_word }}{% endif %}</span>
+            {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
+          </div>
         </div>
     </div>
     <!-- /.wrapper -->
