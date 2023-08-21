@@ -23,4 +23,5 @@ urlpatterns = [
     path("", include("film_collections.urls")),
     path("cinema/", include("city_cinemas.urls")),
     path("__debug__/", include("debug_toolbar.urls")),
+    path("martor/", include("martor.urls")),
 ]
