@@ -79,7 +79,7 @@ class Genre(models.Model):
 
 
 class Collection(models.Model):
-    name = models.CharField(max_length=200)
+    name = models.CharField(max_length=200, verbose_name='Имя колекции')
     films = models.ManyToManyField("Film", related_name="collections")
 
 

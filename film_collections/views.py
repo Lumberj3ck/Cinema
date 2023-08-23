@@ -8,31 +8,18 @@ def premiere(request):
     genre = request.GET.get("genre")
     if category not in ("rating", "name"):
         category = "-rating"
-    category = "-rating" if category == "rating" else category
+    premiers = (
+        models.Collection.objects.get(name="Премьеры")
+        .films.prefetch_related(
+        Prefetch("actors", queryset=models.Actor.objects.only("id", "name")),
+        Prefetch(
+                    "director", queryset=models.Director.objects.only("id", "name")
+                ),
+            )
+            .defer("description", "budget", "acceptable_age", "country")
+    ).order_by(category)
     if genre and genre.isdigit():
-        premiers = (
-            models.Collection.objects.get(name="Премьеры")
-            .films.prefetch_related(
-                Prefetch("actors", queryset=models.Actor.objects.only("id", "name")),
-                Prefetch(
-                    "director", queryset=models.Director.objects.only("id", "name")
-                ),
-            )
-            .defer("description", "budget", "acceptable_age", "country")
-            .filter(genres=genre)
-        )
-    else:
-        premiers = (
-            models.Collection.objects.get(name="Премьеры")
-            .films.prefetch_related(
-                Prefetch("actors", queryset=models.Actor.objects.only("id", "name")),
-                Prefetch(
-                    "director", queryset=models.Director.objects.only("id", "name")
-                ),
-            )
-            .defer("description", "budget", "acceptable_age", "country")
-            .order_by(category)
-        )
+        premiers = premiers.filter(genres=genre)
     sort_by_name = category == "name"
     if len(premiers) > 21:
         slicer, current_page_number, page_obj = views.with_pagination(
