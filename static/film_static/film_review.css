@@ -8,3 +8,34 @@
   font-size: 16px; 
   color: #4d5b7c;
 }
+
+.field_wraps{
+  background-color: rgba(128, 128, 128, 0.093);
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.field{
+  background-color: rgba(128, 128, 128, 0.103);
+  border: none;
+  margin-bottom: 15px;
+  padding: 7px;
+  width: 75%;
+  border-radius: 5px;
+}
+
+
+.submit_but{
+  width: 40%;
+  padding: 0;
+  margin: 0;
+  max-width: 200px;
+}
+
+.comment{
+  margin: 10px 0;
+}
+.label_comment{
+  margin-bottom: 20px;
+}
