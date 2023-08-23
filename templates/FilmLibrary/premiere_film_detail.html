@@ -71,7 +71,6 @@
                 {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
             </div>
         </div>
-        {% if cinemas %}
         <div class="in_theater">
           {% if reviews %}
           <div class="box_wrapper">
@@ -88,24 +87,25 @@
               </p>
               </div>
               {% endfor %}
-              </div>
-            </div>
-          </div>
-          {% endif %}
-            <div class="box_wrapper">
-                <h2 style="margin-bottom: 15px">Смотреть в кино</h2>
-                {% for cinema in cinemas %}
-                    <a href="{% url 'cinema_detail' cinema_id=cinema.id %}" class="film_name">{{ cinema.name }}</a>
-                    <div class="session_links">
-                        {% for schedule in film.schedule_set.all %}
-                            {% if schedule.cinema.id == cinema.id %}
-                                <a href="{% url 'session' movie_slug=film.slug session_id=schedule.id %}" class="session_link">{{ schedule.time }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                    {% endfor %}
-            </div>
-        </div>
+	      </div>
+	    </div>
+	  </div>
+	  {% endif %}
+	  {% if cinemas %}
+	  <div class="box_wrapper">
+		  <h2 style="margin-bottom: 15px">Смотреть в кино</h2>
+		  {% for cinema in cinemas %}
+		  <a href="{% url 'cinema_detail' cinema_id=cinema.id %}" class="film_name">{{ cinema.name }}</a>
+		  <div class="session_links">
+			  {% for schedule in film.schedule_set.all %}
+			  {% if schedule.cinema.id == cinema.id %}
+			  <a href="{% url 'session' movie_slug=film.slug session_id=schedule.id %}" class="session_link">{{ schedule.time }}</a>
+			  {% endif %}
+			  {% endfor %}
+		  </div>
+		  {% endfor %}
+	  </div>
+	</div>
         {% endif %}
     </div>
     <!-- /.wrapper -->
