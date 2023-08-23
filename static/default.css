@@ -23,8 +23,10 @@
 }
 
 .clickable_link {
-    text-decoration: none;
-    color: #000000;
+    color: black;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-color: rgb(0 0 0 / 27%);
 }
 
 .clickable_link:hover {
