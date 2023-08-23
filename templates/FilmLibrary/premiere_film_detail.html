@@ -76,6 +76,7 @@
           {% if reviews %}
           <div class="box_wrapper">
             <div class='review'>
+		    {% load martortags %}
               <h2 class='review_title'>Ревью</h2>
               <div class='reviews'>
               {% for review in reviews %}
@@ -83,7 +84,7 @@
               <span class='review_num'>{{forloop.counter}}.</span>
               <a href='{% url "film_review" movie_slug=film.slug review_id=review.id %}' class='clickable_link'>{{review.name|capfirst}}</a>
               <p class='review_text' style='margin-top: 10px;'>
-              {{review.text|truncatewords:30}}
+              {{review.text|safe_markdown|truncatewords:30}}
               </p>
               </div>
               {% endfor %}
