@@ -3,9 +3,10 @@ from django.core.paginator import Paginator
 from django.shortcuts import Http404, render, get_object_or_404
 from .models import Film, Actor, Director, Collection, Review
 from city_cinemas.models import Cinema
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.db.models import Prefetch
 from .utils import get_object_and_prefetch
+from .forms import CommentForm
 
 
 def with_pagination(queryset, request, by_page=21):
@@ -130,9 +131,22 @@ def list_of_artist(request):
 def film_review(request, movie_slug, review_id):
     film = get_object_and_prefetch(movie_slug, model=Film, only=["reviews"])
     review = film.reviews.prefetch_related("comment_set").get(pk=review_id)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        print(form)
+        if form.is_valid():
+            new_comment = form.save(commit=False)
+            new_comment.review = review 
+            new_comment.save()
+            return HttpResponseRedirect('.')
+    else:
+        form = CommentForm()
     comments = review.comment_set.all()
     return render(
         request,
         "FilmLibrary/film_review.html",
-        {"review": review, "comments": comments},
+        {"review": review,
+         "comments": comments,
+         "form": form,
+         },
     )

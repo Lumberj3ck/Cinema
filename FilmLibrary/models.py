@@ -1,3 +1,5 @@
+# from django.utils import timezone 
+from datetime import datetime
 from django.db import models
 from django.db.models.fields import related
 from django.urls import reverse
@@ -93,7 +95,7 @@ class Review(models.Model):
 
 
 class Comment(models.Model):
-    user = models.ForeignKey(User, related_name="reviews", on_delete=models.CASCADE)
-    review = models.ForeignKey("Review", on_delete=models.CASCADE, null=True)
+    username = models.CharField(max_length=20)    
+    review = models.ForeignKey("Review", on_delete=models.CASCADE)
     text = models.CharField(max_length=500)
-    created = models.TimeField(auto_now_add=True)
+    created = models.DateTimeField(default=datetime.now)

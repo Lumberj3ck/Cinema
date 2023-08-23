@@ -52,3 +52,7 @@ class GenreAdmin(admin.ModelAdmin):
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
     list_display = ["name"]
+
+@admin.register(Comment)
+class CommentsAdmin(admin.ModelAdmin):
+    list_display = ["username", 'text']

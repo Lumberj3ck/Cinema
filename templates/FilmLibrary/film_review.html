@@ -13,11 +13,32 @@
   {% load martortags %}
 <div class='review_text'>{{review.text|safe_markdown}}</div>`
 <div class='comments'>
+  <form action="." method="post">
+    {% csrf_token %}
+      <div class="field_wraps">
+        <h3 class="label_comment">Оставить комментарий</h3>
+        {{form.username.errors}}
+        <div><input class='field' type="text" name="username" placeholder="Ваше имя"></div>
+        {{form.text.errors}}
+        <div><input class='field' type="text" name="text" placeholder="Коментарий"></div>
+        {{field}}
+        <input class='field btn submit_but' type="submit" value="Отправить">
+      </div>
+  </form>
+  <h3 class="label_comment" style="margin-top: 20px;">Коментарии</h3>
   {% for comment in comments %}
-  <div class='comment'>{{comment.text}}</div>
+  <div class='comment field_wraps'>
+    <div>{{comment.username}} {{comment.created|timesince}} назад</div>
+   <div>{{comment.text}}</div> 
+  </div>
   {% endfor %}
 </div>
-<div class='likes_counter'>{{review.like_count}}</div>
+<!-- <div class='likes_counter'>
+  {% verbatim %}
+  {{review.like_count}}
+  {% endverbatim %}
+  <button class="like_button">Like</button>
+</div> -->
 </div>
 {% endblock %}
 
