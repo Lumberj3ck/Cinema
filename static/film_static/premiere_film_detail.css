@@ -160,6 +160,7 @@ img {
 .review_text{
   color: gray;
 }
+
 @media (max-width: 1100px) {
     .own_wrapper {
         grid-gap: 15px;
@@ -241,5 +242,9 @@ img {
 
     .own_col-2 {
         font-size: 13.6px;
+    }
+
+    .in_theater{
+        margin-top: 10px;
     }
 }
