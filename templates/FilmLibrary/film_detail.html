@@ -58,7 +58,7 @@
                     <span class='review_num'>{{forloop.counter}}.</span>
                     <a href='{% url "film_review" movie_slug=film.slug review_id=review.id %}' class='clickable_link'>{{review.name|capfirst}}</a>
                     <p class='review_text' style='margin-top: 10px;'>
-                    {{review.text|safe_markdown|truncatewords:30}
+		    {{review.text|safe_markdown|truncatewords:30}}
                     </p>
                   </div>
                  {% endfor %}
