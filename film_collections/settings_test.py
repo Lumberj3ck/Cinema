@@ -51,11 +51,11 @@ class Settings(TestCase):
         )
         cls.film1 = Film.objects.create(
             name="Film 1",
-            rating=7.5,
+            rating=8,
             country="USA",
             slug="my-film1",
             year=20222,
-            rating_counts=1500,
+            rating_counts=1501,
             image="https://example.com/image.jpg",
             description="Описание фильма",
             length="120",

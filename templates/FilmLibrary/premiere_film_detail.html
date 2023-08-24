@@ -63,17 +63,9 @@
                 </ul>
             </div>
         </div>
-        <div class="col-3-hidden box_wrapper">
-            <div class="rating">
-                <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
-                <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
-                    {{ film.rating_counts|evaluate_word }}{% endif %}</span>
-                {#                <a href="#" class="clickable_link">1 Рецензия</a>#}
-            </div>
-        </div>
         <div class="in_theater">
           {% if reviews %}
-          <div class="box_wrapper">
+          <div class="box_wrapper review_wrapps">
             <div class='review'>
 		    {% load martortags %}
               <h2 class='review_title'>Ревью</h2>
@@ -106,6 +98,13 @@
 		  {% endfor %}
 	  </div>
         {% endif %}
+        <div class="col-3-hidden box_wrapper">
+            <div class="rating">
+                <span class="rating_main">{{ film.rating }}</span><span> Imdb</span>
+                <span class="rating_counts">{% if film.rating_counts == 0 %}15321 оценка{% else %}
+                    {{ film.rating_counts|evaluate_word }}{% endif %}</span>
+            </div>
+        </div>
 	</div>
     </div>
     <!-- /.wrapper -->

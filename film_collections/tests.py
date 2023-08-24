@@ -24,9 +24,7 @@ class Film_collection_url(Settings):
         self.assertEqual(response.resolver_match.url_name, 'premiere')
 
     def test_db_collection(self):
-        # print(dir(self.premiere_collection))
         response = self.client.get(self.url)
-        print(dir(response.context))
 
     def test_view_logic(self):
         bad_response = self.client.get('premiere/sort-by=1')
@@ -34,7 +32,13 @@ class Film_collection_url(Settings):
         right_response = self.client.get('?sort-by=name')
         self.assertEqual(right_response.status_code, 200)
         self.assertQuerysetEqual(right_response.context['page_obj'], self.premiere_collection.films.order_by('name'))
-
+    
+    def test_genres_in_view(self):
+        genre = 1
+        response = self.client.get(f'?sort-by=name&genre={genre}')
+        self.assertQuerysetEqual(response.context['page_obj'], self.premiere_collection.films.order_by('name').filter(genres=genre))
+        response = self.client.get(f'?genre={genre}&page=2')
+        self.assertEqual(response.status_code, 200)
     
 
         

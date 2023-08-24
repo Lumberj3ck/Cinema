@@ -4,58 +4,9 @@ from FilmLibrary import views
 from .views import *
 from django.contrib.auth.models import User
 from .models import *
+from film_collections.settings_test import Settings
 
-
-class HomePage(TestCase):
-    def setUp(self):
-        self.premiere_collection = Collection.objects.create(name="Премьеры")
-        user = User.objects.create_user(username="testuser", password="password123")
-        user.email = "test@example.com"
-        user.first_name = "Test"
-        user.last_name = "User"
-        user.save()
-        self.user = user
-        actor1 = Actor.objects.create(
-            name="Actor 1",
-            career="Актер",
-            slug="actor-1",
-            age="30",
-            biography="Биография актера 1",
-        )
-        actor2 = Actor.objects.create(
-            name="Actor 2",
-            career="Актер",
-            slug="actor-2",
-            age="25",
-            biography="Биография актера 2",
-        )
-        director = Director.objects.create(
-            name="Director 1",
-            career="Режиссер",
-            slug="director-1",
-            age="40",
-            biography="Биография режиссера 1",
-        )
-        genre1 = Genre.objects.create(name="Жанр 1")
-        genre2 = Genre.objects.create(name="Жанр 2")
-        self.film = Film.objects.create(
-            name="My Film",
-            rating=7.5,
-            country="USA",
-            slug="my-film",
-            year=2023,
-            rating_counts=1500,
-            image="https://example.com/image.jpg",
-            description="Описание фильма",
-            length="120",
-            acceptable_age=16,
-            budget=10000000,
-            director=director,
-        )
-
-        self.film.actors.add(actor1, actor2)
-        self.film.genres.add(genre1, genre2)
-
+class HomePage(Settings):
     def setup_review(self):
         for i in range(5):
             review = Review.objects.create(
@@ -66,7 +17,7 @@ class HomePage(TestCase):
                 staff=True,
             )
             comment = Comment.objects.create(
-                user=self.user, review=review, text="i like it"
+                username='Lumberjack', review=review, text="i like it"
             )
 
     def test_review_link_in_film_detail(self):
