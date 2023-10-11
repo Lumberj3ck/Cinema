@@ -45,7 +45,7 @@ How to use:
    psql -U yourusername -d yourdatabase
   ```
 6. Inside psql shell run
-   ```
+  ```
  CREATE EXTENSION pg_trgm;
   ```
 Now set up is done
