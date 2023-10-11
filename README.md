@@ -39,8 +39,8 @@ How to use:
     docker exec your_container_id python manage.py migrate
     docker exec your_container_id python manage.py loaddata db.json
   ```
-  This will create data for database from db.json file.
-5. For working search 
+  This will create data for database from db.json file.  
+5. Enable search 
   ```
    psql -U yourusername -d yourdatabase
   ```
