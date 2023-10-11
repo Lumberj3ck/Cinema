@@ -22,9 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-rm=wtgj#c!bl_6q4y=suue63k(_#j0yephi^8@w0i1c(*0irjb'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = bool(int(os.environ.get('DEBUG', default=0)))
 
 ALLOWED_HOSTS = ['afishakino.info.gf', 'localhost']
+ALLOWED_HOSTS = os.environ.get('DJANGO_ALLOWED_HOSTS', default='localhost').split(' ') 
 
 LOGGING = {
         'version': 1,
@@ -95,11 +96,12 @@ WSGI_APPLICATION = 'Cinema.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cinema_project',
-        'USER': 'lumberjack',
-        'PASSWORD': 'h*99IgJdEc8*',
-        'HOST': 'localhost',
+        # 'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DB', default='cinema_project'),
+        'USER': os.environ.get('POSTGRES_USER', default='lumberjack'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', default='h*99igjdec8*'),
+        'HOST': os.environ.get('DATABASE_HOST', default='db'),
         'PORT': '',
     }
 }
