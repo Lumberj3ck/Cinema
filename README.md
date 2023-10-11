@@ -29,11 +29,12 @@ Deployment: AWS
 
 How to use:
 1. Edit .env.prod file add your site ip or domain name to allowed host variable
-2. ```
+2.
+  ```
    docker compose build
    docker compose up
    ```
-3. Then you need to create a volume for postgres to implement this run this command
+4. Then you need to create a volume for postgres to implement this run this command
   ```
     docker exec your_container_id python manage.py migrate
     docker exec your_container_id python manage.py loaddata db.json
