@@ -1,5 +1,5 @@
 # Project: City Cinema Website
-
+[Working Demo](https://afishakino.info.gf/)
 # Project Description:
 For this engaging project, I had the pleasure of developing a dynamic and user-friendly website for a city cinema. The goal was to provide visitors with a seamless platform to explore a wide range of information about films, including showtimes, synopses, reviews, and more.
 
@@ -25,3 +25,20 @@ Frontend: HTML5, CSS3, JavaScript
 Backend: Django
 Database: PostgreSQL
 Deployment: AWS
+
+
+How to use:
+1. Edit .env.prod file add your site ip or domain name to allowed host variable
+2. Enable docker
+  ```
+   docker compose build
+   docker compose up
+   ```
+4. Then you need to create a volume for postgres to implement this run this command
+  ```
+    docker exec your_container_id python manage.py migrate
+    docker exec your_container_id python manage.py loaddata db.json
+  ```
+  This will create data for database from db.json file.
+    
+
