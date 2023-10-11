@@ -1,5 +1,5 @@
 # Project: City Cinema Website
-
+(Working Demo)[https://afishakino.info.gf/]
 # Project Description:
 For this engaging project, I had the pleasure of developing a dynamic and user-friendly website for a city cinema. The goal was to provide visitors with a seamless platform to explore a wide range of information about films, including showtimes, synopses, reviews, and more.
 
@@ -29,7 +29,7 @@ Deployment: AWS
 
 How to use:
 1. Edit .env.prod file add your site ip or domain name to allowed host variable
-2.
+2. Enable docker
   ```
    docker compose build
    docker compose up
