@@ -34,12 +34,11 @@ How to use:
    docker compose build
    docker compose up
    ```
-4. Then you need to create a volume for postgres to implement this run this command
+4. Then you need to create a volume for postgres to implement this run this command. This code bellow will create data for database from db.json file.  
   ```
     docker exec your_container_id python manage.py migrate
     docker exec your_container_id python manage.py loaddata db.json
   ```
-  This will create data for database from db.json file.  
 5. Enable search 
   ```
    psql -U yourusername -d yourdatabase
