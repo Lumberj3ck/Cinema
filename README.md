@@ -1,4 +1,5 @@
 # Project: City Cinema Website
+![Project picture](https://github.com/Lumberj3ck/Cinema/blob/main/FilmLibrary/static/favicons/android-chrome-192x192.png)
 [Working Demo](https://afishakino.info.gf/)
 # Project Description:
 For this engaging project, I had the pleasure of developing a dynamic and user-friendly website for a city cinema. The goal was to provide visitors with a seamless platform to explore a wide range of information about films, including showtimes, synopses, reviews, and more.
