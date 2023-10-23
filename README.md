@@ -40,9 +40,10 @@ How to use:
     docker exec your_container_id python manage.py migrate
     docker exec your_container_id python manage.py loaddata db.json
   ```
-5. Enable search 
+5. Enable search, Inside postgres shell 
   ```
    psql -U yourusername -d yourdatabase
+    # psql -U lumberjack -d cinema_project
   ```
 6. Inside psql shell run
   ```
