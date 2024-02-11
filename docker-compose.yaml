@@ -3,8 +3,17 @@ services:
     build: ./nginx
     ports:
       - 80:80
+      - 443:443
     volumes:
       - static_files:/home/app/static
+      - ./certbot/www:/var/www/certbot/:ro
+      - ./certbot/conf/:/etc/nginx/ssl/:ro
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - ./certbot/www/:/var/www/certbot/:rw
+      - ./certbot/conf/:/etc/letsencrypt/:rw
 
   db:
     image: postgres 
@@ -16,8 +25,7 @@ services:
       - 5432:5432
     depends_on:
       - nginx 
-# _&D*3gJi##v&9_b
-# .#rU-f%5dS%xY+N
+
   backend:
     build: .
     volumes:

@@ -249,4 +249,5 @@ ALLOWED_HTML_ATTRIBUTES = [
     "scope", "src", "style", "title", "type", "width"
 ]
 
+CSRF_TRUSTED_ORIGINS = ['https://kinoafisha.info.gf']
 CSRF_COOKIE_HTTPONLY = False
