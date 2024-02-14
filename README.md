@@ -33,7 +33,8 @@ To quickly set up and deploy the City Cinema Website on your own server, follow 
 6. Inside psql shell run
   ```
  CREATE EXTENSION pg_trgm;
- ```
+   ```
+  Now set up is done
 
 ## Usage
 Key Features and Achievements:
@@ -51,5 +52,4 @@ Attractive Design: The website boasts an attractive and intuitive design, making
 Security: Security was a top priority. I ensured that user data and payment information are handled securely to provide a safe online booking experience.
 
 Responsive Design: The website is fully responsive, adapting seamlessly to various devices, including desktops, tablets, and smartphones.
-  ```
-Now set up is done
+
