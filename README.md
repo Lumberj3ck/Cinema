@@ -37,7 +37,7 @@ To quickly set up and deploy the City Cinema Website on your own server, follow 
   Now set up is done
 
 ## Usage
-Key Features and Achievements:
+**Key Features and Achievements:**
 
 **Film Information**: I designed the website to showcase comprehensive information about films. Visitors can easily find details about movie plots, cast, and crew.
 
