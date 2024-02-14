@@ -39,17 +39,17 @@ To quickly set up and deploy the City Cinema Website on your own server, follow 
 ## Usage
 Key Features and Achievements:
 
-Film Information: I designed the website to showcase comprehensive information about films. Visitors can easily find details about movie plots, cast, and crew.
+**Film Information**: I designed the website to showcase comprehensive information about films. Visitors can easily find details about movie plots, cast, and crew.
 
-Showtimes: To enhance user convenience, I integrated a showtimes feature, allowing users to check movie schedules and book tickets online.
+**Showtimes**: To enhance user convenience, I integrated a showtimes feature, allowing users to check movie schedules and book tickets online.
 
-User Reviews: Movie enthusiasts can share their thoughts and experiences by posting reviews and ratings on the platform.
+**User Reviews**: Movie enthusiasts can share their thoughts and experiences by posting reviews and ratings on the platform.
 
-Events Calendar: I implemented an events calendar to keep users informed about special screenings, premieres, and film-related events.
+**Events Calendar**: I implemented an events calendar to keep users informed about special screenings, premieres, and film-related events.
 
-Attractive Design: The website boasts an attractive and intuitive design, making it visually appealing and user-friendly.
+**Attractive Design**: The website boasts an attractive and intuitive design, making it visually appealing and user-friendly.
 
-Security: Security was a top priority. I ensured that user data and payment information are handled securely to provide a safe online booking experience.
+**Security: Security** was a top priority. I ensured that user data and payment information are handled securely to provide a safe online booking experience.
 
-Responsive Design: The website is fully responsive, adapting seamlessly to various devices, including desktops, tablets, and smartphones.
+**Responsive Design**: The website is fully responsive, adapting seamlessly to various devices, including desktops, tablets, and smartphones.
 
