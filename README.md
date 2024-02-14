@@ -1,6 +1,8 @@
 # City Cinema Website
 
+You can check project online [here](https://kinoafisha.info.gf/)
 ![City Cinema Website](https://github.com/Lumberj3ck/Cinema/blob/main/FilmLibrary/static/favicons/android-chrome-192x192.png)
+![kino_site-ezgif com-video-to-gif-converter](https://github.com/Lumberj3ck/Cinema/assets/103587817/33442384-dcfe-4611-b1d4-6901e6c9e9b3)
 
 ## Description
 
