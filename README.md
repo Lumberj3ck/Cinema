@@ -33,6 +33,7 @@ To quickly set up and deploy the City Cinema Website on your own server, follow 
 6. Inside psql shell run
   ```
  CREATE EXTENSION pg_trgm;
+ ```
 
 ## Usage
 Key Features and Achievements:
